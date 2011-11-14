@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F63599B914717A0800AEAE41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599B814717A0800AEAE41 /* UIKit.framework */; };
+		F63599BB14717A0800AEAE41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BA14717A0800AEAE41 /* Foundation.framework */; };
+		F63599BD14717A0800AEAE41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BC14717A0800AEAE41 /* CoreGraphics.framework */; };
+		F63599C314717A0800AEAE41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F63599C114717A0800AEAE41 /* InfoPlist.strings */; };
+		F63599C514717A0800AEAE41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F63599C414717A0800AEAE41 /* main.m */; };
+		F63599C914717A0800AEAE41 /* whoshungryAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F63599C814717A0800AEAE41 /* whoshungryAppDelegate.m */; };
+		F63599CC14717A0800AEAE41 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63599CA14717A0800AEAE41 /* MainWindow.xib */; };
+		F63599CF14717A0800AEAE41 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63599CE14717A0800AEAE41 /* RootViewController.m */; };
+		F63599D214717A0800AEAE41 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63599D014717A0800AEAE41 /* RootViewController.xib */; };
+		F63599DA14717A0900AEAE41 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599D914717A0900AEAE41 /* SenTestingKit.framework */; };
+		F63599DB14717A0900AEAE41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599B814717A0800AEAE41 /* UIKit.framework */; };
+		F63599DC14717A0900AEAE41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BA14717A0800AEAE41 /* Foundation.framework */; };
+		F63599DD14717A0900AEAE41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BC14717A0800AEAE41 /* CoreGraphics.framework */; };
+		F63599E514717A0900AEAE41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F63599E314717A0900AEAE41 /* InfoPlist.strings */; };
+		F63599E714717A0900AEAE41 /* whoshungryTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F63599E614717A0900AEAE41 /* whoshungryTests.h */; };
+		F63599E914717A0900AEAE41 /* whoshungryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F63599E814717A0900AEAE41 /* whoshungryTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F63599DE14717A0900AEAE41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F63599AB14717A0800AEAE41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F63599B314717A0800AEAE41;
+			remoteInfo = whoshungry;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F63599B414717A0800AEAE41 /* whoshungry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whoshungry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F63599B814717A0800AEAE41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F63599BA14717A0800AEAE41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F63599BC14717A0800AEAE41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F63599C014717A0800AEAE41 /* whoshungry-Info.plist */ = {isa = PBXFileReference; path = "whoshungry-Info.plist"; sourceTree = "<group>"; };
+		F63599C214717A0800AEAE41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F63599C414717A0800AEAE41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F63599C614717A0800AEAE41 /* whoshungry-Prefix.pch */ = {isa = PBXFileReference; path = "whoshungry-Prefix.pch"; sourceTree = "<group>"; };
+		F63599C714717A0800AEAE41 /* whoshungryAppDelegate.h */ = {isa = PBXFileReference; path = whoshungryAppDelegate.h; sourceTree = "<group>"; };
+		F63599C814717A0800AEAE41 /* whoshungryAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = whoshungryAppDelegate.m; sourceTree = "<group>"; };
+		F63599CB14717A0800AEAE41 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		F63599CD14717A0800AEAE41 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		F63599CE14717A0800AEAE41 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		F63599D114717A0800AEAE41 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		F63599D814717A0900AEAE41 /* whoshungryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whoshungryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F63599D914717A0900AEAE41 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F63599E214717A0900AEAE41 /* whoshungryTests-Info.plist */ = {isa = PBXFileReference; path = "whoshungryTests-Info.plist"; sourceTree = "<group>"; };
+		F63599E414717A0900AEAE41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F63599E614717A0900AEAE41 /* whoshungryTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whoshungryTests.h; sourceTree = "<group>"; };
+		F63599E814717A0900AEAE41 /* whoshungryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = whoshungryTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F63599B114717A0800AEAE41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599B914717A0800AEAE41 /* UIKit.framework in Frameworks */,
+				F63599BB14717A0800AEAE41 /* Foundation.framework in Frameworks */,
+				F63599BD14717A0800AEAE41 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F63599D414717A0900AEAE41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599DA14717A0900AEAE41 /* SenTestingKit.framework in Frameworks */,
+				F63599DB14717A0900AEAE41 /* UIKit.framework in Frameworks */,
+				F63599DC14717A0900AEAE41 /* Foundation.framework in Frameworks */,
+				F63599DD14717A0900AEAE41 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F63599A914717A0800AEAE41 = {
+			isa = PBXGroup;
+			children = (
+				F63599BE14717A0800AEAE41 /* whoshungry */,
+				F63599E014717A0900AEAE41 /* whoshungryTests */,
+				F63599B714717A0800AEAE41 /* Frameworks */,
+				F63599B514717A0800AEAE41 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F63599B514717A0800AEAE41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F63599B414717A0800AEAE41 /* whoshungry.app */,
+				F63599D814717A0900AEAE41 /* whoshungryTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F63599B714717A0800AEAE41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F63599B814717A0800AEAE41 /* UIKit.framework */,
+				F63599BA14717A0800AEAE41 /* Foundation.framework */,
+				F63599BC14717A0800AEAE41 /* CoreGraphics.framework */,
+				F63599D914717A0900AEAE41 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F63599BE14717A0800AEAE41 /* whoshungry */ = {
+			isa = PBXGroup;
+			children = (
+				F63599C714717A0800AEAE41 /* whoshungryAppDelegate.h */,
+				F63599C814717A0800AEAE41 /* whoshungryAppDelegate.m */,
+				F63599CA14717A0800AEAE41 /* MainWindow.xib */,
+				F63599CD14717A0800AEAE41 /* RootViewController.h */,
+				F63599CE14717A0800AEAE41 /* RootViewController.m */,
+				F63599D014717A0800AEAE41 /* RootViewController.xib */,
+				F63599BF14717A0800AEAE41 /* Supporting Files */,
+			);
+			path = whoshungry;
+			sourceTree = "<group>";
+		};
+		F63599BF14717A0800AEAE41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F63599C014717A0800AEAE41 /* whoshungry-Info.plist */,
+				F63599C114717A0800AEAE41 /* InfoPlist.strings */,
+				F63599C414717A0800AEAE41 /* main.m */,
+				F63599C614717A0800AEAE41 /* whoshungry-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F63599E014717A0900AEAE41 /* whoshungryTests */ = {
+			isa = PBXGroup;
+			children = (
+				F63599E614717A0900AEAE41 /* whoshungryTests.h */,
+				F63599E814717A0900AEAE41 /* whoshungryTests.m */,
+				F63599E114717A0900AEAE41 /* Supporting Files */,
+			);
+			path = whoshungryTests;
+			sourceTree = "<group>";
+		};
+		F63599E114717A0900AEAE41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F63599E214717A0900AEAE41 /* whoshungryTests-Info.plist */,
+				F63599E314717A0900AEAE41 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F63599B314717A0800AEAE41 /* whoshungry */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F63599EC14717A0900AEAE41 /* Build configuration list for PBXNativeTarget "whoshungry" */;
+			buildPhases = (
+				F63599B014717A0800AEAE41 /* Sources */,
+				F63599B114717A0800AEAE41 /* Frameworks */,
+				F63599B214717A0800AEAE41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = whoshungry;
+			productName = whoshungry;
+			productReference = F63599B414717A0800AEAE41 /* whoshungry.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F63599D714717A0900AEAE41 /* whoshungryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F63599EF14717A0900AEAE41 /* Build configuration list for PBXNativeTarget "whoshungryTests" */;
+			buildPhases = (
+				F63599D314717A0900AEAE41 /* Sources */,
+				F63599D414717A0900AEAE41 /* Frameworks */,
+				F63599D514717A0900AEAE41 /* Resources */,
+				F63599D614717A0900AEAE41 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F63599DF14717A0900AEAE41 /* PBXTargetDependency */,
+			);
+			name = whoshungryTests;
+			productName = whoshungryTests;
+			productReference = F63599D814717A0900AEAE41 /* whoshungryTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F63599AB14717A0800AEAE41 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F63599AE14717A0800AEAE41 /* Build configuration list for PBXProject "whoshungry" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F63599A914717A0800AEAE41;
+			productRefGroup = F63599B514717A0800AEAE41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F63599B314717A0800AEAE41 /* whoshungry */,
+				F63599D714717A0900AEAE41 /* whoshungryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F63599B214717A0800AEAE41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599C314717A0800AEAE41 /* InfoPlist.strings in Resources */,
+				F63599CC14717A0800AEAE41 /* MainWindow.xib in Resources */,
+				F63599D214717A0800AEAE41 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F63599D514717A0900AEAE41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599E514717A0900AEAE41 /* InfoPlist.strings in Resources */,
+				F63599E714717A0900AEAE41 /* whoshungryTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F63599D614717A0900AEAE41 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F63599B014717A0800AEAE41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599C514717A0800AEAE41 /* main.m in Sources */,
+				F63599C914717A0800AEAE41 /* whoshungryAppDelegate.m in Sources */,
+				F63599CF14717A0800AEAE41 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F63599D314717A0900AEAE41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63599E914717A0900AEAE41 /* whoshungryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F63599DF14717A0900AEAE41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F63599B314717A0800AEAE41 /* whoshungry */;
+			targetProxy = F63599DE14717A0900AEAE41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F63599C114717A0800AEAE41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F63599C214717A0800AEAE41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F63599CA14717A0800AEAE41 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F63599CB14717A0800AEAE41 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		F63599D014717A0800AEAE41 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F63599D114717A0800AEAE41 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		F63599E314717A0900AEAE41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F63599E414717A0900AEAE41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F63599EA14717A0900AEAE41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F63599EB14717A0900AEAE41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F63599ED14717A0900AEAE41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "whoshungry/whoshungry-Prefix.pch";
+				INFOPLIST_FILE = "whoshungry/whoshungry-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F63599EE14717A0900AEAE41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "whoshungry/whoshungry-Prefix.pch";
+				INFOPLIST_FILE = "whoshungry/whoshungry-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F63599F014717A0900AEAE41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/whoshungry.app/whoshungry";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "whoshungry/whoshungry-Prefix.pch";
+				INFOPLIST_FILE = "whoshungryTests/whoshungryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F63599F114717A0900AEAE41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/whoshungry.app/whoshungry";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "whoshungry/whoshungry-Prefix.pch";
+				INFOPLIST_FILE = "whoshungryTests/whoshungryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F63599AE14717A0800AEAE41 /* Build configuration list for PBXProject "whoshungry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F63599EA14717A0900AEAE41 /* Debug */,
+				F63599EB14717A0900AEAE41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F63599EC14717A0900AEAE41 /* Build configuration list for PBXNativeTarget "whoshungry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F63599ED14717A0900AEAE41 /* Debug */,
+				F63599EE14717A0900AEAE41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F63599EF14717A0900AEAE41 /* Build configuration list for PBXNativeTarget "whoshungryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F63599F014717A0900AEAE41 /* Debug */,
+				F63599F114717A0900AEAE41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F63599AB14717A0800AEAE41 /* Project object */;
+}
