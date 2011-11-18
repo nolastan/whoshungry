@@ -7,13 +7,38 @@
 //
 
 #import "RootViewController.h"
+#import "User.h"
 
 @implementation RootViewController
+
+@synthesize users;
+
+-(IBAction)refresh {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    self.users = [User findAllRemote];
+    [self.tableView reloadData];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+}
+
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Users";
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                      target:self
+                                      action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItem = refreshButton;
+    [refreshButton release];
+
+    
+    [self refresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,7 +77,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [users count];
 }
 
 // Customize the appearance of table view cells.
@@ -66,6 +91,11 @@
     }
 
     // Configure the cell.
+    
+    User *user = [users objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = user.phoneNumber;
+    cell.detailTextLabel.text = user.availability;
     return cell;
 }
 
@@ -78,21 +108,27 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        
+        User *user = [users objectAtIndex:indexPath.row];
+        [user destroyRemote];
+        [users removeObjectAtIndex:indexPath.row];
         // Delete the row from the data source.
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert)
     {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -139,6 +175,7 @@
 
 - (void)dealloc
 {
+    [users release];
     [super dealloc];
 }
 

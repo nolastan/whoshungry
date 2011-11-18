@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UITableViewController
+@interface RootViewController : UITableViewController {
+    NSMutableArray *users;
+    
+}
+
+@property (nonatomic, retain) NSArray * users;
 
 @end

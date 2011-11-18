@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E635E9B14762C570016A1A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635E9A14762C570016A1A5 /* User.m */; };
+		3E635EA014762F620016A1A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635E9F14762F620016A1A5 /* JSONKit.m */; };
+		3E635EA3147635BE0016A1A5 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635EA2147635BE0016A1A5 /* Resource.m */; };
 		F63599B914717A0800AEAE41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599B814717A0800AEAE41 /* UIKit.framework */; };
 		F63599BB14717A0800AEAE41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BA14717A0800AEAE41 /* Foundation.framework */; };
 		F63599BD14717A0800AEAE41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BC14717A0800AEAE41 /* CoreGraphics.framework */; };
@@ -36,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E635E9914762C570016A1A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		3E635E9A14762C570016A1A5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		3E635E9E14762F620016A1A5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		3E635E9F14762F620016A1A5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		3E635EA1147635BE0016A1A5 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
+		3E635EA2147635BE0016A1A5 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		F63599B414717A0800AEAE41 /* whoshungry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whoshungry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63599B814717A0800AEAE41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F63599BA14717A0800AEAE41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E635E9D14762F4C0016A1A5 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				3E635E9E14762F620016A1A5 /* JSONKit.h */,
+				3E635E9F14762F620016A1A5 /* JSONKit.m */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
 		F63599A914717A0800AEAE41 = {
 			isa = PBXGroup;
 			children = (
@@ -116,11 +134,16 @@
 		F63599BE14717A0800AEAE41 /* whoshungry */ = {
 			isa = PBXGroup;
 			children = (
+				3E635E9D14762F4C0016A1A5 /* json */,
 				F63599C714717A0800AEAE41 /* whoshungryAppDelegate.h */,
 				F63599C814717A0800AEAE41 /* whoshungryAppDelegate.m */,
 				F63599CA14717A0800AEAE41 /* MainWindow.xib */,
 				F63599CD14717A0800AEAE41 /* RootViewController.h */,
 				F63599CE14717A0800AEAE41 /* RootViewController.m */,
+				3E635EA1147635BE0016A1A5 /* Resource.h */,
+				3E635EA2147635BE0016A1A5 /* Resource.m */,
+				3E635E9914762C570016A1A5 /* User.h */,
+				3E635E9A14762C570016A1A5 /* User.m */,
 				F63599D014717A0800AEAE41 /* RootViewController.xib */,
 				F63599BF14717A0800AEAE41 /* Supporting Files */,
 			);
@@ -265,6 +288,9 @@
 				F63599C514717A0800AEAE41 /* main.m in Sources */,
 				F63599C914717A0800AEAE41 /* whoshungryAppDelegate.m in Sources */,
 				F63599CF14717A0800AEAE41 /* RootViewController.m in Sources */,
+				3E635E9B14762C570016A1A5 /* User.m in Sources */,
+				3E635EA014762F620016A1A5 /* JSONKit.m in Sources */,
+				3E635EA3147635BE0016A1A5 /* Resource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +466,7 @@
 				F63599EE14717A0900AEAE41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F63599EF14717A0900AEAE41 /* Build configuration list for PBXNativeTarget "whoshungryTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +475,7 @@
 				F63599F114717A0900AEAE41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
