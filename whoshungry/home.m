@@ -69,18 +69,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *myAvail = [[friendsAvail alloc] init ];
-    UIViewController *friendsList = [[friendsAvail alloc] init ];
-    UIViewController *viewFriendsAvail = [[friendsAvail alloc] init ];
-//	if (indexPath.row == 0){
-//        [self.navigationController pushViewController:vc animated:YES];          
-//    }
-//	if (indexPath.row == 1){
-//        [self.navigationController pushViewController:vc animated:YES];   
-//    }
-//	if (indexPath.row == 2){
-//        [self.navigationController pushViewController:vc animated:YES];   
-//    }
+    UIViewController *myAvailController = [[myAvail alloc] init ];
+    UIViewController *friendsListController = [[friends alloc] init ];
+    UIViewController *viewFriendsAvailController = [[friendsAvail alloc] init ];
+	if (indexPath.row == 0){
+        [self.navigationController pushViewController:myAvailController animated:YES];          
+    }
+	if (indexPath.row == 1){
+        [self.navigationController pushViewController:friendsListController animated:YES];   
+    }
+	if (indexPath.row == 2){
+        [self.navigationController pushViewController:viewFriendsAvailController animated:YES];   
+    }
 }
 
 /*
