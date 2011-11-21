@@ -15,6 +15,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Friends' Availability";
+        UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addAction:)];
+        self.navigationItem.rightBarButtonItem = groupButton;
+        [groupButton release];
+
     }
     return self;
 }
