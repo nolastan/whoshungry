@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface home : UIViewController
+@interface SimpleTableView : UITableViewController {
+    NSMutableArray * names;
+}
 
 @end
