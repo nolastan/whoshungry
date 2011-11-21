@@ -7,48 +7,100 @@
 //
 
 #import "home.h"
+#import "myAvail.h"
+#import "friendsAvail.h"
+#import "friends.h"
 
-@implementation SimpleTableView
+@implementation home
 
-- (id)init
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super init];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
-        
+        self.title = @"Who's Hungry?";
     }
     return self;
 }
 
-
-- (void) viewDidLoad {
-    names = [[NSMutableArray alloc] initWithObjects:@"Ron", @"Robert", @"Jeremy", @"Todd", @"Caitlin",nil];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *CellIdentifier = @"Cell";  
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];  
+	if (cell == nil) {  
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];  
+    }  
+	
+    // Set up the text for your cell  
+    NSString *cellValue = [listOfItems objectAtIndex:indexPath.row];  
+    cell.textLabel.text = cellValue;  
+	
+	return cell;  
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1; 
+	return 1;
 }
 
-
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [names count];
+	return [listOfItems count];
+}
+/*
+ // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+ // Custom initialization
+ }
+ return self;
+ }
+ */
+
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	
+	//initializing
+	listOfItems = [[NSMutableArray alloc] init];
+	
+	//adding objects to the array
+	[listOfItems addObject: @"Set My Availability"];
+	[listOfItems addObject: @"Friends List"];
+	[listOfItems addObject: @"View Friends' Availability"];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *myAvail = [[friendsAvail alloc] init ];
+    UIViewController *friendsList = [[friendsAvail alloc] init ];
+    UIViewController *viewFriendsAvail = [[friendsAvail alloc] init ];
+//	if (indexPath.row == 0){
+//        [self.navigationController pushViewController:vc animated:YES];          
+//    }
+//	if (indexPath.row == 1){
+//        [self.navigationController pushViewController:vc animated:YES];   
+//    }
+//	if (indexPath.row == 2){
+//        [self.navigationController pushViewController:vc animated:YES];   
+//    }
+}
 
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	cell.textLabel.text = [names objectAtIndex:indexPath.row];
-	
-    return cell;
+/*
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+- (void)dealloc {
+	[listOfItems release];
+    [super dealloc];
 }
 
 

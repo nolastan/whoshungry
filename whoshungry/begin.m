@@ -7,7 +7,7 @@
 //
 
 #import "begin.h"
-#import "friendAvail.h"
+#import "home.h"
 
 @implementation begin
 
@@ -15,16 +15,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"Welcome";
     }
     return self;
 }
 
 - (IBAction)push {
-    UIViewController *h = [[friendAvail alloc] init ];
-    [self.navigationController pushViewController:h animated:YES];
-    NSLog(@"Pushed");
-    
+    UIViewController *h = [[home alloc] init ];
+    [self.navigationController pushViewController:h animated:YES];    
 }
 
 - (void)didReceiveMemoryWarning

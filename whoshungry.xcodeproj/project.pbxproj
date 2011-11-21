@@ -280,17 +280,17 @@
 			isa = PBXGroup;
 			children = (
 				F68FFF0E147A03BF002880D2 /* friendsAvail.m */,
+				F68FFF16147A03BF002880D2 /* friendAvail.m */,
 				F68FFF0F147A03BF002880D2 /* profile.m */,
 				F68FFF10147A03BF002880D2 /* friends.m */,
-				F68FFF11147A03BF002880D2 /* home.m */,
 				F68FFF12147A03BF002880D2 /* repeat.m */,
 				F68FFF13147A03BF002880D2 /* addAvail.m */,
 				F68FFF14147A03BF002880D2 /* editAvail.m */,
 				F68FFF15147A03BF002880D2 /* multFriends.m */,
-				F68FFF16147A03BF002880D2 /* friendAvail.m */,
 				F68FFF17147A03BF002880D2 /* addFriendByNumber.m */,
 				F68FFF18147A03BF002880D2 /* availDetail.m */,
 				F68FFF19147A03BF002880D2 /* myAvail.m */,
+				F68FFF11147A03BF002880D2 /* home.m */,
 				F68FFF1A147A03BF002880D2 /* begin.m */,
 			);
 			name = Controllers;

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SimpleTableView : UITableViewController {
-    NSMutableArray * names;
+@interface home : UITableViewController{
+    NSMutableArray *listOfItems;
 }
 
+- (IBAction)viewMyAvail;
+- (IBAction)viewFriendsList;
+- (IBAction)viewFriendsAvail;
 @end

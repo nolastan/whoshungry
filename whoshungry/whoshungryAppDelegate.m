@@ -18,7 +18,7 @@
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
-    UIViewController *beginControl = [[[begin alloc] initWithNibName:@"begin" bundle:nil] autorelease];
+    UIViewController *beginControl = [[[begin alloc] init] autorelease];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:beginControl];
     
