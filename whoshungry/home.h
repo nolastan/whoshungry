@@ -12,7 +12,4 @@
     NSMutableArray *listOfItems;
 }
 
-- (IBAction)viewMyAvail;
-- (IBAction)viewFriendsList;
-- (IBAction)viewFriendsAvail;
 @end
