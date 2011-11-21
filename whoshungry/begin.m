@@ -7,6 +7,7 @@
 //
 
 #import "begin.h"
+#import "friendAvail.h"
 
 @implementation begin
 
@@ -17,6 +18,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)push {
+    UIViewController *h = [[friendAvail alloc] init ];
+    [self.navigationController pushViewController:h animated:YES];
+    NSLog(@"Pushed");
+    
 }
 
 - (void)didReceiveMemoryWarning
