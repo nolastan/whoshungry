@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface begin : UIViewController
+@interface begin : UIViewController {
+    IBOutlet UITextField * textField;
+    
+}
 
 @end

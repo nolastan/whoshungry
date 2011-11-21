@@ -8,6 +8,7 @@
 
 #import "begin.h"
 #import "home.h"
+#import "User.h"
 
 @implementation begin
 
@@ -22,7 +23,15 @@
 
 - (IBAction)push {
     UIViewController *h = [[home alloc] init ];
-    [self.navigationController pushViewController:h animated:YES];    
+    
+    NSString *phoneNumber = [textField text];
+    NSLog(@"%@", [textField text]);
+    
+    User *currentUser = [[User alloc]initWithPhoneNumber:phoneNumber ];
+    
+    
+    [self.navigationController pushViewController:h animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

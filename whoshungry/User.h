@@ -12,6 +12,7 @@
     NSString *phoneNumber;
     NSString *availability;
     NSString *userId;
+    NSMutableArray *friends;
 }
 
 @property (nonatomic, copy) NSString *phoneNumber;
@@ -20,6 +21,7 @@
 
 - (id) initWithDictionary:(NSDictionary *)dict;
 
+- (id) initWithPhoneNumber:(NSString *)dict;
 + (NSArray *) findAllRemote;
 
 - (void)createRemote;

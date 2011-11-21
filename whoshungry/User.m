@@ -29,6 +29,30 @@ static NSString *siteURL = @"http://localhost:3000";
     
 }
 
+-(id) initWithPhoneNumber:(NSString *) phoneNumber {
+    if (self = [super init]) {
+        NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, phoneNumber];
+
+        NSString *jsonString = [Resource get:url];
+        
+        if (jsonString) {
+            NSDictionary *dict = [jsonString objectFromJSONString];
+            NSString *userId = [dict valueForKey:@"id"];
+            NSLog(@"Got dict from remote id is: %@", userId);
+            friends = [[NSMutableArray alloc] init];
+            
+            NSArray *friendsResult = [dict valueForKey:@"friends"];
+            
+            for (NSDictionary *friend in friendsResult) {
+                NSLog(@"%@", [friend valueForKey:@"phone_number"]);
+                User *f = [[User alloc ]initWithDictionary:friend];
+                [friends addObject:f];
+            }
+        }
+    }
+    return  self;
+}
+
 - (void) dealloc {
     [phoneNumber release];
     [availability release];
@@ -67,6 +91,8 @@ static NSString *siteURL = @"http://localhost:3000";
     
     return [params JSONString];
 }
+
+
 
 - (void)createRemote {
     NSString *url =
