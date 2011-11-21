@@ -26,6 +26,32 @@
 		F63599E514717A0900AEAE41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F63599E314717A0900AEAE41 /* InfoPlist.strings */; };
 		F63599E714717A0900AEAE41 /* whoshungryTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F63599E614717A0900AEAE41 /* whoshungryTests.h */; };
 		F63599E914717A0900AEAE41 /* whoshungryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F63599E814717A0900AEAE41 /* whoshungryTests.m */; };
+		F68FFF01147A03B6002880D2 /* repeat.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF4147A03B6002880D2 /* repeat.xib */; };
+		F68FFF02147A03B6002880D2 /* addAvail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF5147A03B6002880D2 /* addAvail.xib */; };
+		F68FFF03147A03B6002880D2 /* editAvail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF6147A03B6002880D2 /* editAvail.xib */; };
+		F68FFF04147A03B6002880D2 /* multFriends.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF7147A03B6002880D2 /* multFriends.xib */; };
+		F68FFF05147A03B6002880D2 /* friendAvail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF8147A03B6002880D2 /* friendAvail.xib */; };
+		F68FFF06147A03B6002880D2 /* friendsAvail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEF9147A03B6002880D2 /* friendsAvail.xib */; };
+		F68FFF07147A03B6002880D2 /* addFriendByNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFA147A03B6002880D2 /* addFriendByNumber.xib */; };
+		F68FFF08147A03B6002880D2 /* availDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFB147A03B6002880D2 /* availDetail.xib */; };
+		F68FFF09147A03B6002880D2 /* myAvail.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFC147A03B6002880D2 /* myAvail.xib */; };
+		F68FFF0A147A03B6002880D2 /* profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFD147A03B6002880D2 /* profile.xib */; };
+		F68FFF0B147A03B6002880D2 /* friends.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFE147A03B6002880D2 /* friends.xib */; };
+		F68FFF0C147A03B6002880D2 /* home.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFEFF147A03B6002880D2 /* home.xib */; };
+		F68FFF0D147A03B6002880D2 /* begin.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FFF00147A03B6002880D2 /* begin.xib */; };
+		F68FFF1B147A03BF002880D2 /* friendsAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF0E147A03BF002880D2 /* friendsAvail.m */; };
+		F68FFF1C147A03BF002880D2 /* profile.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF0F147A03BF002880D2 /* profile.m */; };
+		F68FFF1D147A03BF002880D2 /* friends.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF10147A03BF002880D2 /* friends.m */; };
+		F68FFF1E147A03BF002880D2 /* home.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF11147A03BF002880D2 /* home.m */; };
+		F68FFF1F147A03BF002880D2 /* repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF12147A03BF002880D2 /* repeat.m */; };
+		F68FFF20147A03BF002880D2 /* addAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF13147A03BF002880D2 /* addAvail.m */; };
+		F68FFF21147A03BF002880D2 /* editAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF14147A03BF002880D2 /* editAvail.m */; };
+		F68FFF22147A03BF002880D2 /* multFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF15147A03BF002880D2 /* multFriends.m */; };
+		F68FFF23147A03BF002880D2 /* friendAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF16147A03BF002880D2 /* friendAvail.m */; };
+		F68FFF24147A03BF002880D2 /* addFriendByNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF17147A03BF002880D2 /* addFriendByNumber.m */; };
+		F68FFF25147A03BF002880D2 /* availDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF18147A03BF002880D2 /* availDetail.m */; };
+		F68FFF26147A03BF002880D2 /* myAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF19147A03BF002880D2 /* myAvail.m */; };
+		F68FFF27147A03BF002880D2 /* begin.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF1A147A03BF002880D2 /* begin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +91,45 @@
 		F63599E414717A0900AEAE41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F63599E614717A0900AEAE41 /* whoshungryTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whoshungryTests.h; sourceTree = "<group>"; };
 		F63599E814717A0900AEAE41 /* whoshungryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = whoshungryTests.m; sourceTree = "<group>"; };
+		F68FFEE4147A036C002880D2 /* friendsAvail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendsAvail.h; sourceTree = "<group>"; };
+		F68FFEE5147A036C002880D2 /* home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = home.h; sourceTree = "<group>"; };
+		F68FFEE6147A036C002880D2 /* friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friends.h; sourceTree = "<group>"; };
+		F68FFEE7147A036C002880D2 /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
+		F68FFEE8147A036C002880D2 /* myAvail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAvail.h; sourceTree = "<group>"; };
+		F68FFEE9147A036C002880D2 /* availDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = availDetail.h; sourceTree = "<group>"; };
+		F68FFEEA147A036C002880D2 /* addFriendByNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addFriendByNumber.h; sourceTree = "<group>"; };
+		F68FFEEB147A036C002880D2 /* friendAvail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendAvail.h; sourceTree = "<group>"; };
+		F68FFEEC147A036C002880D2 /* multFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multFriends.h; sourceTree = "<group>"; };
+		F68FFEED147A036C002880D2 /* editAvail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editAvail.h; sourceTree = "<group>"; };
+		F68FFEEE147A036C002880D2 /* addAvail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addAvail.h; sourceTree = "<group>"; };
+		F68FFEEF147A036C002880D2 /* repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = repeat.h; sourceTree = "<group>"; };
+		F68FFEF0147A036C002880D2 /* begin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = begin.h; sourceTree = "<group>"; };
+		F68FFEF4147A03B6002880D2 /* repeat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = repeat.xib; sourceTree = "<group>"; };
+		F68FFEF5147A03B6002880D2 /* addAvail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addAvail.xib; sourceTree = "<group>"; };
+		F68FFEF6147A03B6002880D2 /* editAvail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editAvail.xib; sourceTree = "<group>"; };
+		F68FFEF7147A03B6002880D2 /* multFriends.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = multFriends.xib; sourceTree = "<group>"; };
+		F68FFEF8147A03B6002880D2 /* friendAvail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = friendAvail.xib; sourceTree = "<group>"; };
+		F68FFEF9147A03B6002880D2 /* friendsAvail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = friendsAvail.xib; sourceTree = "<group>"; };
+		F68FFEFA147A03B6002880D2 /* addFriendByNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addFriendByNumber.xib; sourceTree = "<group>"; };
+		F68FFEFB147A03B6002880D2 /* availDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = availDetail.xib; sourceTree = "<group>"; };
+		F68FFEFC147A03B6002880D2 /* myAvail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myAvail.xib; sourceTree = "<group>"; };
+		F68FFEFD147A03B6002880D2 /* profile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profile.xib; sourceTree = "<group>"; };
+		F68FFEFE147A03B6002880D2 /* friends.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = friends.xib; sourceTree = "<group>"; };
+		F68FFEFF147A03B6002880D2 /* home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = home.xib; sourceTree = "<group>"; };
+		F68FFF00147A03B6002880D2 /* begin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = begin.xib; sourceTree = "<group>"; };
+		F68FFF0E147A03BF002880D2 /* friendsAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendsAvail.m; sourceTree = "<group>"; };
+		F68FFF0F147A03BF002880D2 /* profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profile.m; sourceTree = "<group>"; };
+		F68FFF10147A03BF002880D2 /* friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friends.m; sourceTree = "<group>"; };
+		F68FFF11147A03BF002880D2 /* home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = home.m; sourceTree = "<group>"; };
+		F68FFF12147A03BF002880D2 /* repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = repeat.m; sourceTree = "<group>"; };
+		F68FFF13147A03BF002880D2 /* addAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addAvail.m; sourceTree = "<group>"; };
+		F68FFF14147A03BF002880D2 /* editAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editAvail.m; sourceTree = "<group>"; };
+		F68FFF15147A03BF002880D2 /* multFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = multFriends.m; sourceTree = "<group>"; };
+		F68FFF16147A03BF002880D2 /* friendAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendAvail.m; sourceTree = "<group>"; };
+		F68FFF17147A03BF002880D2 /* addFriendByNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addFriendByNumber.m; sourceTree = "<group>"; };
+		F68FFF18147A03BF002880D2 /* availDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = availDetail.m; sourceTree = "<group>"; };
+		F68FFF19147A03BF002880D2 /* myAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAvail.m; sourceTree = "<group>"; };
+		F68FFF1A147A03BF002880D2 /* begin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = begin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +199,10 @@
 		F63599BE14717A0800AEAE41 /* whoshungry */ = {
 			isa = PBXGroup;
 			children = (
+				F68FFEF3147A038B002880D2 /* Views */,
+				F68FFEF2147A0385002880D2 /* Controllers */,
+				F68FFEF1147A037A002880D2 /* Models */,
+				F68FFEE2147A035C002880D2 /* Headers */,
 				3E635E9D14762F4C0016A1A5 /* json */,
 				F63599C714717A0800AEAE41 /* whoshungryAppDelegate.h */,
 				F63599C814717A0800AEAE41 /* whoshungryAppDelegate.m */,
@@ -178,6 +247,73 @@
 				F63599E314717A0900AEAE41 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F68FFEE2147A035C002880D2 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				F68FFEE4147A036C002880D2 /* friendsAvail.h */,
+				F68FFEE5147A036C002880D2 /* home.h */,
+				F68FFEE6147A036C002880D2 /* friends.h */,
+				F68FFEE7147A036C002880D2 /* profile.h */,
+				F68FFEE8147A036C002880D2 /* myAvail.h */,
+				F68FFEE9147A036C002880D2 /* availDetail.h */,
+				F68FFEEA147A036C002880D2 /* addFriendByNumber.h */,
+				F68FFEEB147A036C002880D2 /* friendAvail.h */,
+				F68FFEEC147A036C002880D2 /* multFriends.h */,
+				F68FFEED147A036C002880D2 /* editAvail.h */,
+				F68FFEEE147A036C002880D2 /* addAvail.h */,
+				F68FFEEF147A036C002880D2 /* repeat.h */,
+				F68FFEF0147A036C002880D2 /* begin.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		F68FFEF1147A037A002880D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F68FFEF2147A0385002880D2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F68FFF0E147A03BF002880D2 /* friendsAvail.m */,
+				F68FFF0F147A03BF002880D2 /* profile.m */,
+				F68FFF10147A03BF002880D2 /* friends.m */,
+				F68FFF11147A03BF002880D2 /* home.m */,
+				F68FFF12147A03BF002880D2 /* repeat.m */,
+				F68FFF13147A03BF002880D2 /* addAvail.m */,
+				F68FFF14147A03BF002880D2 /* editAvail.m */,
+				F68FFF15147A03BF002880D2 /* multFriends.m */,
+				F68FFF16147A03BF002880D2 /* friendAvail.m */,
+				F68FFF17147A03BF002880D2 /* addFriendByNumber.m */,
+				F68FFF18147A03BF002880D2 /* availDetail.m */,
+				F68FFF19147A03BF002880D2 /* myAvail.m */,
+				F68FFF1A147A03BF002880D2 /* begin.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F68FFEF3147A038B002880D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F68FFEF4147A03B6002880D2 /* repeat.xib */,
+				F68FFEF5147A03B6002880D2 /* addAvail.xib */,
+				F68FFEF6147A03B6002880D2 /* editAvail.xib */,
+				F68FFEF7147A03B6002880D2 /* multFriends.xib */,
+				F68FFEF8147A03B6002880D2 /* friendAvail.xib */,
+				F68FFEF9147A03B6002880D2 /* friendsAvail.xib */,
+				F68FFEFA147A03B6002880D2 /* addFriendByNumber.xib */,
+				F68FFEFB147A03B6002880D2 /* availDetail.xib */,
+				F68FFEFC147A03B6002880D2 /* myAvail.xib */,
+				F68FFEFD147A03B6002880D2 /* profile.xib */,
+				F68FFEFE147A03B6002880D2 /* friends.xib */,
+				F68FFEFF147A03B6002880D2 /* home.xib */,
+				F68FFF00147A03B6002880D2 /* begin.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +386,19 @@
 				F63599C314717A0800AEAE41 /* InfoPlist.strings in Resources */,
 				F63599CC14717A0800AEAE41 /* MainWindow.xib in Resources */,
 				F63599D214717A0800AEAE41 /* RootViewController.xib in Resources */,
+				F68FFF01147A03B6002880D2 /* repeat.xib in Resources */,
+				F68FFF02147A03B6002880D2 /* addAvail.xib in Resources */,
+				F68FFF03147A03B6002880D2 /* editAvail.xib in Resources */,
+				F68FFF04147A03B6002880D2 /* multFriends.xib in Resources */,
+				F68FFF05147A03B6002880D2 /* friendAvail.xib in Resources */,
+				F68FFF06147A03B6002880D2 /* friendsAvail.xib in Resources */,
+				F68FFF07147A03B6002880D2 /* addFriendByNumber.xib in Resources */,
+				F68FFF08147A03B6002880D2 /* availDetail.xib in Resources */,
+				F68FFF09147A03B6002880D2 /* myAvail.xib in Resources */,
+				F68FFF0A147A03B6002880D2 /* profile.xib in Resources */,
+				F68FFF0B147A03B6002880D2 /* friends.xib in Resources */,
+				F68FFF0C147A03B6002880D2 /* home.xib in Resources */,
+				F68FFF0D147A03B6002880D2 /* begin.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +440,19 @@
 				3E635E9B14762C570016A1A5 /* User.m in Sources */,
 				3E635EA014762F620016A1A5 /* JSONKit.m in Sources */,
 				3E635EA3147635BE0016A1A5 /* Resource.m in Sources */,
+				F68FFF1B147A03BF002880D2 /* friendsAvail.m in Sources */,
+				F68FFF1C147A03BF002880D2 /* profile.m in Sources */,
+				F68FFF1D147A03BF002880D2 /* friends.m in Sources */,
+				F68FFF1E147A03BF002880D2 /* home.m in Sources */,
+				F68FFF1F147A03BF002880D2 /* repeat.m in Sources */,
+				F68FFF20147A03BF002880D2 /* addAvail.m in Sources */,
+				F68FFF21147A03BF002880D2 /* editAvail.m in Sources */,
+				F68FFF22147A03BF002880D2 /* multFriends.m in Sources */,
+				F68FFF23147A03BF002880D2 /* friendAvail.m in Sources */,
+				F68FFF24147A03BF002880D2 /* addFriendByNumber.m in Sources */,
+				F68FFF25147A03BF002880D2 /* availDetail.m in Sources */,
+				F68FFF26147A03BF002880D2 /* myAvail.m in Sources */,
+				F68FFF27147A03BF002880D2 /* begin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
