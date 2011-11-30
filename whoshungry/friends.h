@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface friends : UIViewController
+@interface friends : UITableViewController  {
+    NSMutableArray *users;
+}
+
+@property (nonatomic, retain) NSArray * users;
 
 @end

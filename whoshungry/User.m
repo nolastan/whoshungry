@@ -38,7 +38,7 @@ static NSString *siteURL = @"http://localhost:3000";
         if (jsonString) {
             NSDictionary *dict = [jsonString objectFromJSONString];
             NSString *userId = [dict valueForKey:@"id"];
-            NSLog(@"Got dict from remote id is: %@", userId);
+            NSLog(@"Got dict from remote id is: %@", jsonString);
             friends = [[NSMutableArray alloc] init];
             
             NSArray *friendsResult = [dict valueForKey:@"friends"];
