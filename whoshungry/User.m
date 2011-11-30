@@ -34,6 +34,7 @@ static NSString *siteURL = @"http://localhost:3000";
         NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, phoneNumber];
 
         NSString *jsonString = [Resource get:url];
+        availability = [[NSMutableDictionary alloc] init];
         
         if (jsonString) {
             NSDictionary *dict = [jsonString objectFromJSONString];
@@ -47,6 +48,15 @@ static NSString *siteURL = @"http://localhost:3000";
                 NSLog(@"%@", [friend valueForKey:@"phone_number"]);
                 User *f = [[User alloc ]initWithDictionary:friend];
                 [friends addObject:f];
+            }
+            
+            NSDictionary *avails = [dict valueForKey:@"availability"];
+            
+            NSEnumerator *keyEnum = [avails keyEnumerator];
+            NSString *key;
+            while(key = [keyEnum nextObject]) {
+                NSDictionary *thisDir = [avails objectForKey:key];
+                [availability setValue:thisDir forKey:key];
             }
         }
     }
@@ -87,7 +97,6 @@ static NSString *siteURL = @"http://localhost:3000";
     
     NSMutableDictionary *params = 
     [NSMutableDictionary dictionaryWithObject:attributes forKey:@"user"];
-    
     
     return [params JSONString];
 }

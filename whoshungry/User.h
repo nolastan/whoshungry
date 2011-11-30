@@ -10,13 +10,13 @@
 
 @interface User : NSObject {
     NSString *phoneNumber;
-    NSString *availability;
+    NSMutableDictionary *availability;
     NSString *userId;
     NSMutableArray *friends;
 }
 
 @property (nonatomic, copy) NSString *phoneNumber;
-@property (nonatomic, copy) NSString *availability;
+@property (nonatomic, copy) NSMutableDictionary *availability;
 @property (nonatomic, copy) NSString *userId;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
