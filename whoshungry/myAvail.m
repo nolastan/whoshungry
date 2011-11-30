@@ -7,6 +7,7 @@
 //
 
 #import "myAvail.h"
+#import "addAvail.h"
 
 @implementation myAvail
 
@@ -16,11 +17,17 @@
     if (self) {
         self.title = @"My Availability";
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
         self.navigationItem.rightBarButtonItem = addButton;
         [addButton release];
     }
     return self;
+}
+
+- (void)addAction
+{
+    UIViewController *h = [[addAvail alloc] init];
+    [self.navigationController presentModalViewController:h animated:YES];    
 }
 
 - (void)didReceiveMemoryWarning
