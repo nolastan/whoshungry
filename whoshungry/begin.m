@@ -21,7 +21,7 @@
 }
 
 - (IBAction)push {
-    UIViewController *h = [[home alloc] init ];
+    UIViewController *h = [[home alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:h animated:YES];    
 }
 
