@@ -10,6 +10,8 @@
 
 @interface home : UITableViewController{
     NSMutableArray *listOfItems;
+	NSDictionary *tableContents;
 }
-
+@property (nonatomic,retain) NSDictionary *tableContents;
+@property (nonatomic,retain) NSArray *listOfItems;
 @end

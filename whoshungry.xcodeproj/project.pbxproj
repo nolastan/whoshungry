@@ -52,6 +52,7 @@
 		F68FFF25147A03BF002880D2 /* availDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF18147A03BF002880D2 /* availDetail.m */; };
 		F68FFF26147A03BF002880D2 /* myAvail.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF19147A03BF002880D2 /* myAvail.m */; };
 		F68FFF27147A03BF002880D2 /* begin.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FFF1A147A03BF002880D2 /* begin.m */; };
+		F6910F8D147A29FB003C7D7D /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = F6910F8C147A29FB003C7D7D /* group.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		F68FFF18147A03BF002880D2 /* availDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = availDetail.m; sourceTree = "<group>"; };
 		F68FFF19147A03BF002880D2 /* myAvail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAvail.m; sourceTree = "<group>"; };
 		F68FFF1A147A03BF002880D2 /* begin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = begin.m; sourceTree = "<group>"; };
+		F6910F8C147A29FB003C7D7D /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 		F63599E114717A0900AEAE41 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6910F8C147A29FB003C7D7D /* group.png */,
 				F63599E214717A0900AEAE41 /* whoshungryTests-Info.plist */,
 				F63599E314717A0900AEAE41 /* InfoPlist.strings */,
 			);
@@ -399,6 +402,7 @@
 				F68FFF0B147A03B6002880D2 /* friends.xib in Resources */,
 				F68FFF0C147A03B6002880D2 /* home.xib in Resources */,
 				F68FFF0D147A03B6002880D2 /* begin.xib in Resources */,
+				F6910F8D147A29FB003C7D7D /* group.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
