@@ -10,4 +10,6 @@
 
 @interface myAvail : UIViewController
 
+-(void)addAction;
+
 @end

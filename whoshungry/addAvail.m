@@ -18,6 +18,9 @@
     }
     return self;
 }
+-(IBAction)cancel:(id)sender{
+    [self dismissModalViewControllerAnimated:YES];   
+}
 
 - (void)didReceiveMemoryWarning
 {

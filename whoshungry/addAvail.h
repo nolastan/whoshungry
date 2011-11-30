@@ -10,4 +10,6 @@
 
 @interface addAvail : UIViewController
 
+-(IBAction)cancel:(id)sender;
+
 @end
