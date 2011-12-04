@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface myAvail : UIViewController
-
--(void)addAction;
+@interface myAvail : UIViewController <UITabBarDelegate, UITableViewDataSource>
+{
+    NSArray *items;
+    NSArray *days;
+}
+@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) NSArray *days;
 
 @end

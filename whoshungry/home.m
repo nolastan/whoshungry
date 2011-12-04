@@ -18,6 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.navigationItem.hidesBackButton = YES;
+        self.title = @"Home";
         // Custom initialization
     }
     return self;
@@ -37,7 +39,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.menuItems = [[NSArray alloc] initWithObjects:@"Friends", @"My Availability", @"Friends' Availability", nil];
+    self.menuItems = [[NSArray alloc] initWithObjects:@"Set My Availability", @"Friends List", @"View Friends' Availability", nil];
 }
 
 - (void)viewDidUnload
@@ -88,6 +90,7 @@
 	if (indexPath.row == 2){
         [self.navigationController pushViewController:viewFriendsAvailController animated:YES];   
     }
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void) dealloc

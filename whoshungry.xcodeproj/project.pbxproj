@@ -10,6 +10,8 @@
 		3E635E9B14762C570016A1A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635E9A14762C570016A1A5 /* User.m */; };
 		3E635EA014762F620016A1A5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635E9F14762F620016A1A5 /* JSONKit.m */; };
 		3E635EA3147635BE0016A1A5 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E635EA2147635BE0016A1A5 /* Resource.m */; };
+		F634E249148C3180008AD189 /* availCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F634E248148C3180008AD189 /* availCell.m */; };
+		F634E24B148C31DE008AD189 /* availCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634E24A148C31DE008AD189 /* availCell.xib */; };
 		F63599B914717A0800AEAE41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599B814717A0800AEAE41 /* UIKit.framework */; };
 		F63599BB14717A0800AEAE41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BA14717A0800AEAE41 /* Foundation.framework */; };
 		F63599BD14717A0800AEAE41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63599BC14717A0800AEAE41 /* CoreGraphics.framework */; };
@@ -72,6 +74,9 @@
 		3E635E9F14762F620016A1A5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		3E635EA1147635BE0016A1A5 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		3E635EA2147635BE0016A1A5 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
+		F634E247148C3180008AD189 /* availCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = availCell.h; sourceTree = "<group>"; };
+		F634E248148C3180008AD189 /* availCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = availCell.m; sourceTree = "<group>"; };
+		F634E24A148C31DE008AD189 /* availCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = availCell.xib; sourceTree = "<group>"; };
 		F63599B414717A0800AEAE41 /* whoshungry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whoshungry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63599B814717A0800AEAE41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F63599BA14717A0800AEAE41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -315,6 +320,9 @@
 				F68FFEFE147A03B6002880D2 /* friends.xib */,
 				F68FFEFF147A03B6002880D2 /* home.xib */,
 				F68FFF00147A03B6002880D2 /* begin.xib */,
+				F634E247148C3180008AD189 /* availCell.h */,
+				F634E248148C3180008AD189 /* availCell.m */,
+				F634E24A148C31DE008AD189 /* availCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -403,6 +411,7 @@
 				F68FFF0C147A03B6002880D2 /* home.xib in Resources */,
 				F68FFF0D147A03B6002880D2 /* begin.xib in Resources */,
 				F6910F8D147A29FB003C7D7D /* group.png in Resources */,
+				F634E24B148C31DE008AD189 /* availCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,7 @@
 				F68FFF25147A03BF002880D2 /* availDetail.m in Sources */,
 				F68FFF26147A03BF002880D2 /* myAvail.m in Sources */,
 				F68FFF27147A03BF002880D2 /* begin.m in Sources */,
+				F634E249148C3180008AD189 /* availCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

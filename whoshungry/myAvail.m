@@ -8,8 +8,12 @@
 
 #import "myAvail.h"
 #import "addAvail.h"
+#import "editAvail.h"
+#import "availCell.h"
 
 @implementation myAvail
+@synthesize items;
+@synthesize days;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +48,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.items = [[NSArray alloc] initWithObjects:@"12-2:30pm", @"11:30-1", nil];
+    self.days = [[NSArray alloc] initWithObjects:@"Mon Wed Fri", @"Tue Thu", nil];
+
 }
 
 - (void)viewDidUnload
@@ -59,4 +66,46 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.items count];
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"availCell";
+    
+    availCell *cell = (availCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *topLevelObjects = [[NSBundle mainBundle]
+                                    loadNibNamed:@"availCell" owner:nil options:nil];
+        
+        for(id currentObject in topLevelObjects){
+            if([currentObject isKindOfClass:[UITableViewCell class]]){
+                cell = (availCell *) currentObject;
+                break;
+            }
+        }
+    }
+    
+    // Configure the cell.
+    cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
+    cell.daysLabel.text = [self.days objectAtIndex: [indexPath row]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+}
+
+// Actions 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *editAvailController = [[editAvail alloc] init ];
+    [self.navigationController pushViewController:editAvailController animated:YES];       
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+}
+
+- (void) dealloc
+{
+    [items release];
+    [super dealloc];
+}
 @end
