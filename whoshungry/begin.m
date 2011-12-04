@@ -22,13 +22,12 @@
 }
 
 - (IBAction)push {
-    UIViewController *h = [[home alloc] init ];
+    UIViewController *h = [[home alloc] init];
     
     NSString *phoneNumber = [textField text];
     NSLog(@"%@", [textField text]);
     
     User *currentUser = [[User alloc]initWithPhoneNumber:phoneNumber ];
-    
     
     [self.navigationController pushViewController:h animated:YES];
 }

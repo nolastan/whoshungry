@@ -1,17 +1,17 @@
 //
-//  home.h
-//  whoshungry
+//  Home.h
+//  lunchable
 //
-//  Created by Stanford Rosenthal on 11/14/11.
+//  Created by Stanford Rosenthal on 12/4/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface home : UITableViewController{
-    NSMutableArray *listOfItems;
-	NSDictionary *tableContents;
+@interface home : UIViewController <UITabBarDelegate, UITableViewDataSource>
+{
+    NSArray *menuItems;
 }
-@property (nonatomic,retain) NSDictionary *tableContents;
-@property (nonatomic,retain) NSArray *listOfItems;
+@property (nonatomic, retain) NSArray *menuItems;
+
 @end

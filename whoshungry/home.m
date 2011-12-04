@@ -1,73 +1,80 @@
 //
-//  home.m
-//  whoshungry
+//  Home.m
+//  lunchable
 //
-//  Created by Stanford Rosenthal on 11/14/11.
+//  Created by Stanford Rosenthal on 12/4/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "home.h"
 #import "myAvail.h"
-#import "friendsAvail.h"
 #import "friends.h"
+#import "friendsAvail.h"
 
 @implementation home
+@synthesize menuItems;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Home";
+        // Custom initialization
     }
     return self;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"Cell";  
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];  
-	if (cell == nil) {  
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];  
-    }  
-	
-    // Set up the text for your cell  
-    NSString *cellValue = [listOfItems objectAtIndex:indexPath.row];  
-    cell.textLabel.text = cellValue;  
-	
-	return cell;  
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
-}
+#pragma mark - View lifecycle
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [listOfItems count];
-}
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
- if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
- // Custom initialization
- }
- return self;
- }
- */
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-	
-	//initializing
-	listOfItems = [[NSMutableArray alloc] init];
-	
-	//adding objects to the array
-	[listOfItems addObject: @"Set My Availability"];
-	[listOfItems addObject: @"Friends List"];
-	[listOfItems addObject: @"View Friends' Availability"];
+    // Do any additional setup after loading the view from its nib.
+    self.menuItems = [[NSArray alloc] initWithObjects:@"Friends", @"My Availability", @"Friends' Availability", nil];
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    self.menuItems = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.menuItems count];
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    // Configure the cell.
+    cell.textLabel.text = [self.menuItems objectAtIndex: [indexPath row]];
+    
+    return cell;
+}
+
+// Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *myAvailController = [[myAvail alloc] init ];
     UIViewController *friendsListController = [[friends alloc] init ];
@@ -83,25 +90,10 @@
     }
 }
 
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-- (void)dealloc {
-	[listOfItems release];
+- (void) dealloc
+{
+    [menuItems release];
     [super dealloc];
 }
-
 
 @end
