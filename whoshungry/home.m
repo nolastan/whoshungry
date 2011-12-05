@@ -13,6 +13,9 @@
 
 @implementation home
 @synthesize menuItems;
+@synthesize tableContents;
+
+@synthesize myUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,13 +28,6 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
@@ -55,6 +51,7 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.menuItems count];
@@ -62,24 +59,24 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    // Configure the cell.
-    cell.textLabel.text = [self.menuItems objectAtIndex: [indexPath row]];
-    
-    return cell;
+	static NSString *CellIdentifier = @"Cell";  
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];  
+	if (cell == nil) {  
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];  
+    }  
+	
+    // Set up the text for your cell  
+    NSString *cellValue = [menuItems objectAtIndex:indexPath.row];  
+    cell.textLabel.text = cellValue;  
+	
+	return cell; 
 }
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *myAvailController = [[myAvail alloc] init ];
-    UIViewController *friendsListController = [[friends alloc] init ];
+    friends *friendsListController = [[friends alloc] initWithUserObject:myUser ];
     UIViewController *viewFriendsAvailController = [[friendsAvail alloc] init ];
 	if (indexPath.row == 0){
         [self.navigationController pushViewController:myAvailController animated:YES];          

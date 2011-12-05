@@ -60,7 +60,7 @@
     [[NSString alloc] initWithData:responseData
                           encoding:NSUTF8StringEncoding];
     [responseString autorelease];
-    
+    NSLog(responseString);
     return responseString;
 }
 

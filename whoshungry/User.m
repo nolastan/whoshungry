@@ -9,6 +9,8 @@
 #import "User.h"
 #import "JSONKit.h"
 #import "Resource.h"
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 @implementation User
 
@@ -17,12 +19,16 @@ static NSString *siteURL = @"http://localhost:3000";
 @synthesize phoneNumber;
 @synthesize availability;
 @synthesize userId;
+@synthesize friends;
+@synthesize name;
 
 -(id) initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
         self.phoneNumber = [dict valueForKey:@"phone_number"];
+        
         self.availability = [dict valueForKey:@"availability"];
         self.userId = [dict valueForKey:@"id"];
+        self.name = [self getNameFromPhoneNumber:self.phoneNumber];
     }
     
     return self;
@@ -63,6 +69,38 @@ static NSString *siteURL = @"http://localhost:3000";
     return  self;
 }
 
+-(NSString*)getNameFromPhoneNumber:(NSString*)number{
+    ABAddressBookRef addressBook = ABAddressBookCreate();
+    NSArray *contacts = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    NSMutableDictionary *peopleDict = [[NSMutableDictionary alloc] init];
+    
+    if (contacts == nil) {
+        NSLog(@"No contacts");
+    }else {
+        for (int i = 0; i < [contacts count]; ++i) {
+            
+            ABRecordRef person = (ABRecordRef)[contacts objectAtIndex:i];
+            ABMutableMultiValueRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+            
+            ABMutableMultiValueRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+            
+            ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue( person, kABPersonPhoneProperty);
+            CFStringRef phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            
+            NSLog(@"Name : %@ %@", firstName, lastName);
+            NSLog(@"Number: %@", phoneNumber);
+            
+            if(phoneNumber == number) {
+                NSString *first = ABMultiValueCopyValueAtIndex(firstName, 0);
+                NSString *last = ABMultiValueCopyValueAtIndex(lastName, 0);
+                return [NSString stringWithFormat:@"%@ %@", first, last];
+            }            
+        }
+    }
+    return [NSString stringWithFormat:@"%d", number];
+
+}
+
 - (void) dealloc {
     [phoneNumber release];
     [availability release];
@@ -101,7 +139,17 @@ static NSString *siteURL = @"http://localhost:3000";
     return [params JSONString];
 }
 
+-(NSString*)createFriendship:(NSString*)number {
+    [User checkUserExistence:number];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships/", siteURL];
+    //[Resource post:[self params] to:url];
+}
 
++(NSString*)checkUserExistence:(NSString*)number {
+    NSLog(@"checking user existence");
+    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, number];
+    [Resource get:url];
+}
 
 - (void)createRemote {
     NSString *url =

@@ -8,10 +8,12 @@
 
 #import "friends.h"
 #import "User.h"
+#import "addFriendByNumber.h"
 
 @implementation friends
 
 @synthesize users;
+@synthesize currentUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,9 +24,19 @@
     return self;
 }
 
+- (id) initWithUserObject:(User *)user
+{
+    self = [super init];
+    if (self) {
+        currentUser = user;
+    }
+    return self;
+    
+}
+
 -(IBAction)refresh {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    self.users = [User findAllRemote];
+    self.users = [currentUser friends];
     [self.tableView reloadData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
@@ -37,17 +49,23 @@
     [super viewDidLoad];
     
     self.title = @"Users";
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc]
-                                      initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+    UIBarButtonItem *addFriendButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                       target:self
-                                      action:@selector(refresh)];
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];
+                                      action:@selector(addAction)];
+    self.navigationItem.rightBarButtonItem = addFriendButton;
+    [addFriendButton release];
     
     
     [self refresh];
+}
+
+- (void)addAction
+{
+    UIViewController *h = [[addFriendByNumber alloc] initWithUserObject:currentUser];
+    [self.navigationController presentModalViewController:h animated:YES];    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -104,7 +122,6 @@
     User *user = [users objectAtIndex:indexPath.row];
     
     cell.textLabel.text = user.phoneNumber;
-    cell.detailTextLabel.text = user.availability;
     return cell;
 }
 
