@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface addFriendByNumber : UIViewController
+@interface addFriendByNumber : UIViewController {
+    IBOutlet UIButton *addButton;
+    IBOutlet UITextField *numberField;
+}
+-(IBAction)push;
+
 
 @end
