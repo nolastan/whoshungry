@@ -17,10 +17,12 @@ static NSString *siteURL = @"http://localhost:3000";
 @synthesize phoneNumber;
 @synthesize availability;
 @synthesize userId;
+@synthesize friends;
 
 -(id) initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
         self.phoneNumber = [dict valueForKey:@"phone_number"];
+        
         self.availability = [dict valueForKey:@"availability"];
         self.userId = [dict valueForKey:@"id"];
     }

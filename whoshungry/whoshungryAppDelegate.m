@@ -8,6 +8,9 @@
 
 #import "whoshungryAppDelegate.h"
 #import "begin.h"
+#import "User.h"
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 @implementation whoshungryAppDelegate
 
@@ -18,6 +21,35 @@
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
+    
+    ABAddressBookRef addressBook = ABAddressBookCreate();
+    NSArray *contacts = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    NSMutableDictionary *peopleDict = [[NSMutableDictionary alloc] init];
+    
+    if (contacts == nil) {
+         
+        NSLog(@"No contacts");
+    }else {
+        for (int i = 0; i < [contacts count]; ++i) {
+            
+            ABRecordRef person = (ABRecordRef)[contacts objectAtIndex:i];
+            ABMutableMultiValueRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+            
+            ABMutableMultiValueRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+
+            ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue( person, kABPersonPhoneProperty);
+            CFStringRef phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            
+            NSLog(@"Name : %@ %@", firstName, lastName);
+            NSLog(@"Number: %@", phoneNumber);
+            
+            [peopleDict setValue:@"%@" forKey:@"value"];
+            
+        }
+    }
+    
+    
+    
     UIViewController *beginControl = [[[begin alloc] init] autorelease];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:beginControl];

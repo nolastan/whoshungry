@@ -12,6 +12,7 @@
 @implementation friends
 
 @synthesize users;
+@synthesize currentUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,9 +23,19 @@
     return self;
 }
 
+- (id) initWithUserObject:(User *)user
+{
+    self = [super init];
+    if (self) {
+        currentUser = user;
+    }
+    return self;
+    
+}
+
 -(IBAction)refresh {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    self.users = [User findAllRemote];
+    self.users = [currentUser friends];
     [self.tableView reloadData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
@@ -104,7 +115,6 @@
     User *user = [users objectAtIndex:indexPath.row];
     
     cell.textLabel.text = user.phoneNumber;
-    cell.detailTextLabel.text = user.availability;
     return cell;
 }
 

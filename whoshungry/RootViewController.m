@@ -95,7 +95,6 @@
     User *user = [users objectAtIndex:indexPath.row];
     
     cell.textLabel.text = user.phoneNumber;
-    cell.detailTextLabel.text = user.availability;
     return cell;
 }
 

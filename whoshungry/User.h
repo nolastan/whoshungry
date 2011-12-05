@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *phoneNumber;
 @property (nonatomic, copy) NSMutableDictionary *availability;
 @property (nonatomic, copy) NSString *userId;
+@property (nonatomic, retain) NSMutableArray *friends;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
 
