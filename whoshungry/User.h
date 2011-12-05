@@ -26,7 +26,9 @@
 
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
+-(NSString*)createFriendship:(NSString*)number;
 + (NSArray *) findAllRemote;
++(NSString*)checkUserExistence:(NSString*)number;
 
 - (void)createRemote;
 - (void)updateRemote;

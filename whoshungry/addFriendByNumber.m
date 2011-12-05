@@ -7,6 +7,7 @@
 //
 
 #import "addFriendByNumber.h"
+#import "User.h"
 
 @implementation addFriendByNumber
 
@@ -19,8 +20,21 @@
     return self;
 }
 
+- (id) initWithUserObject:(User *)user
+{
+    self = [super init];
+    if (self) {
+        currentUser = user;
+    }
+    return self;
+    
+}
+
 -(IBAction)push{
     NSString *number = [numberField text];
+    
+    NSString *result = [currentUser createFriendship:number];
+    NSLog(number);
 }
 
 - (void)didReceiveMemoryWarning

@@ -139,7 +139,17 @@ static NSString *siteURL = @"http://localhost:3000";
     return [params JSONString];
 }
 
+-(NSString*)createFriendship:(NSString*)number {
+    [User checkUserExistence:number];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships/", siteURL];
+    //[Resource post:[self params] to:url];
+}
 
++(NSString*)checkUserExistence:(NSString*)number {
+    NSLog(@"checking user existence");
+    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, number];
+    [Resource get:url];
+}
 
 - (void)createRemote {
     NSString *url =

@@ -8,6 +8,7 @@
 
 #import "friends.h"
 #import "User.h"
+#import "addFriendByNumber.h"
 
 @implementation friends
 
@@ -48,17 +49,23 @@
     [super viewDidLoad];
     
     self.title = @"Users";
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc]
-                                      initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+    UIBarButtonItem *addFriendButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                       target:self
-                                      action:@selector(refresh)];
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];
+                                      action:@selector(addAction)];
+    self.navigationItem.rightBarButtonItem = addFriendButton;
+    [addFriendButton release];
     
     
     [self refresh];
+}
+
+- (void)addAction
+{
+    UIViewController *h = [[addFriendByNumber alloc] initWithUserObject:currentUser];
+    [self.navigationController presentModalViewController:h animated:YES];    
 }
 
 - (void)viewWillAppear:(BOOL)animated
