@@ -37,7 +37,7 @@ static NSString *siteURL = @"http://localhost:3000";
 
 -(id) initWithPhoneNumber:(NSString *) phoneNumber {
     if (self = [super init]) {
-        NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, phoneNumber];
+        NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, phoneNumber];
 
         NSString *jsonString = [Resource get:url];
         availability = [[NSMutableDictionary alloc] init];
@@ -56,14 +56,39 @@ static NSString *siteURL = @"http://localhost:3000";
                 [friends addObject:f];
             }
             
-            NSDictionary *avails = [dict valueForKey:@"availability"];
             
-            NSEnumerator *keyEnum = [avails keyEnumerator];
+            NSDictionary *avails = [dict valueForKey:@"avail"];
+            NSArray *times = [avails valueForKey:@"food_times"];
+            availability = [[NSMutableArray alloc] initWithCapacity:7];
+            for (int i = 0; i < 7; ++i) {
+                [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
+            }
+            
+            //NSLog(@"Times: %@", times);
+            
+            
+            for (NSDictionary * t in times) {
+                NSString * dayOfWeek = [t objectForKey:@"dow"];
+                int dayIndex = [dayOfWeek intValue];
+                NSString * start = [[t objectForKey:@"start"] autorelease];
+                
+                NSString * end = [[t objectForKey:@"end" ] autorelease];
+                
+                
+                NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
+                
+                
+                [[availability objectAtIndex:dayIndex] addObject:interval];
+            }
+            
+            //NSLog(@"Final Avail: %@", availability);
+        
+            /*NSEnumerator *keyEnum = [avails keyEnumerator];
             NSString *key;
             while(key = [keyEnum nextObject]) {
                 NSDictionary *thisDir = [avails objectForKey:key];
                 [availability setValue:thisDir forKey:key];
-            }
+            }*/
         }
     }
     return  self;

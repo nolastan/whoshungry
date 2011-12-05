@@ -13,12 +13,27 @@
 
 @implementation myAvail
 @synthesize items;
-@synthesize days;
+@synthesize days, myUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"My Availability";
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+        self.navigationItem.rightBarButtonItem = addButton;
+        [addButton release];
+    }
+    return self;
+}
+
+
+- (id) initWithUserObject:(User *)user {
+    self = [super init];
+    if (self) {
+        myUser = user;
+        
         self.title = @"My Availability";
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
@@ -48,8 +63,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.items = [[NSArray alloc] initWithObjects:@"12-2:30pm", @"11:30-1", nil];
-    self.days = [[NSArray alloc] initWithObjects:@"Mon Wed Fri", @"Tue Thu", nil];
+    //self.items = [[NSArray alloc] initWithObjects:@"12-2:30pm", @"11:30-1", @"", @"", @"", @"", @"",nil];
+    self.days = [[NSArray alloc] initWithObjects:@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", nil];
+    self.items = [myUser availability];
+    
+    NSLog(@"Avails: %@", self.items);
+    
 
 }
 
@@ -68,7 +87,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.items count];
+    return [self.days count];
 }
 
 // Customize the appearance of table view cells.
@@ -89,7 +108,17 @@
     }
     
     // Configure the cell.
-    cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
+    //cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
+    NSArray * times = [self.items objectAtIndex: [indexPath row]];
+    NSMutableString * timeLblTxt = [[NSMutableString alloc] init ];
+    for (NSDictionary * interval in times) {
+        NSString *start = [interval objectForKey:@"start"];
+        NSString *end = [interval objectForKey:@"end"];
+        
+        [timeLblTxt appendFormat:@"%@-%@pm", start, end]; 
+    }
+    
+    cell.timeLabel.text = timeLblTxt;
     cell.daysLabel.text = [self.days objectAtIndex: [indexPath row]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

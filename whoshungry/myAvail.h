@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface myAvail : UIViewController <UITabBarDelegate, UITableViewDataSource>
 {
     NSArray *items;
     NSArray *days;
+    User *myUser;
 }
 @property (nonatomic, retain) NSArray *items;
 @property (nonatomic, retain) NSArray *days;
+@property (nonatomic , retain) User *myUser;
 
+
+- (id) initWithUserObject:(User *)user;
 @end
