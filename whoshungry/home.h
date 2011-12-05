@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface home : UITableViewController{
     NSMutableArray *listOfItems;
 	NSDictionary *tableContents;
+    User *myUser;
 }
 @property (nonatomic,retain) NSDictionary *tableContents;
 @property (nonatomic,retain) NSArray *listOfItems;
+@property (nonatomic, retain) User *myUser;
 @end

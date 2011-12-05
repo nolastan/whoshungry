@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface friends : UITableViewController  {
     NSMutableArray *users;
+    User *currentUser;
 }
 
 @property (nonatomic, retain) NSArray * users;
+@property (nonatomic, retain) User * currentUser;
+
+
+- (id)initWithUser:(User *)user; 
 
 @end

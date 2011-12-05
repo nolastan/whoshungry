@@ -13,6 +13,8 @@
 
 @implementation home
 
+@synthesize myUser;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -21,6 +23,8 @@
     }
     return self;
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";  
@@ -70,7 +74,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *myAvailController = [[myAvail alloc] init ];
-    UIViewController *friendsListController = [[friends alloc] init ];
+    UIViewController *friendsListController = [[friends alloc] initWithUser:myUser ];
     UIViewController *viewFriendsAvailController = [[friendsAvail alloc] init ];
 	if (indexPath.row == 0){
         [self.navigationController pushViewController:myAvailController animated:YES];          
