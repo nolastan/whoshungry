@@ -9,5 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface friendsAvail : UIViewController
+{
+    IBOutlet UITableView *table;
+    NSArray *names;
+    NSArray *times;
+    NSString *filterText;
+    BOOL *compatibleOnly;
+}
+
+//@property (nonatomic, retain) NSString *compatibleOnly;
+@property (nonatomic, retain) NSArray *times;
+@property (nonatomic, retain) NSArray *names;
+@property (nonatomic, retain) NSString *filterText;
+
 
 @end
