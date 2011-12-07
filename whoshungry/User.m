@@ -70,9 +70,9 @@ static NSString *siteURL = @"http://localhost:3000";
             for (NSDictionary * t in times) {
                 NSString * dayOfWeek = [t objectForKey:@"dow"];
                 int dayIndex = [dayOfWeek intValue];
-                NSString * start = [[t objectForKey:@"start"] autorelease];
+                NSString * start = [t objectForKey:@"start"];
                 
-                NSString * end = [[t objectForKey:@"end" ] autorelease];
+                NSString * end = [t objectForKey:@"end" ];
                 
                 
                 NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
@@ -81,7 +81,7 @@ static NSString *siteURL = @"http://localhost:3000";
                 [[availability objectAtIndex:dayIndex] addObject:interval];
             }
             
-            //NSLog(@"Final Avail: %@", availability);
+            NSLog(@"Final Avail: %@", availability);
         
             /*NSEnumerator *keyEnum = [avails keyEnumerator];
             NSString *key;
@@ -166,13 +166,21 @@ static NSString *siteURL = @"http://localhost:3000";
 
 -(NSString*)createFriendship:(NSString*)number {
     [User checkUserExistence:number];
-    NSString *url = [NSString stringWithFormat:@"%@/friendships/", siteURL];
-    //[Resource post:[self params] to:url];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships.json", siteURL];
+    
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:@"9" forKey:@"user_id"];
+    [attributes setValue:@"12" forKey:@"friend_id"];
+    
+    NSMutableDictionary *params = 
+    [NSMutableDictionary dictionaryWithObject:attributes forKey:@"friendship"];
+    
+    [Resource post:[attributes JSONString] to:url];
 }
 
 +(NSString*)checkUserExistence:(NSString*)number {
     NSLog(@"checking user existence");
-    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, number];
+    NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, number];
     [Resource get:url];
 }
 
