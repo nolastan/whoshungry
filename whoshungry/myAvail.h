@@ -15,7 +15,7 @@
     NSArray *days;
     User *myUser;
 }
-@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, copy) NSArray *items;
 @property (nonatomic, retain) NSArray *days;
 @property (nonatomic , retain) User *myUser;
 

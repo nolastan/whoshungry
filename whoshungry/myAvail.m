@@ -67,7 +67,9 @@
     self.days = [[NSArray alloc] initWithObjects:@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", nil];
     self.items = [myUser availability];
     
-    NSLog(@"Avails: %@", self.items);
+    NSLog(@"%@", myUser);
+    
+    NSLog(@"Avails: %@", items);
     
 
 }
