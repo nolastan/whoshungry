@@ -35,6 +35,8 @@
     
     NSString *result = [currentUser createFriendship:number];
     NSLog(number);
+    [currentUser updateFriends];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

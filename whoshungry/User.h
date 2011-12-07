@@ -34,6 +34,7 @@
 - (void)updateRemote;
 - (void)saveRemote;
 - (void)destroyRemote;
+-(void) updateFriends;
 
 
 @end

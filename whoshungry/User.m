@@ -44,7 +44,7 @@ static NSString *siteURL = @"http://localhost:3000";
         
         if (jsonString) {
             NSDictionary *dict = [jsonString objectFromJSONString];
-            NSString *userId = [dict valueForKey:@"id"];
+            userId = [dict valueForKey:@"id"];
             NSLog(@"Got dict from remote id is: %@", jsonString);
             friends = [[NSMutableArray alloc] init];
             
@@ -110,21 +110,61 @@ static NSString *siteURL = @"http://localhost:3000";
             ABMutableMultiValueRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
             
             ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue( person, kABPersonPhoneProperty);
-            CFStringRef phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            NSString *phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            
+            //NSString *phoneNumber = [(NSString *)phoneNumberRef UTF8String];
             
             NSLog(@"Name : %@ %@", firstName, lastName);
-            NSLog(@"Number: %@", phoneNumber);
+            //NSLog(@"Number: %@", phoneNumber);
             
-            if(phoneNumber == number) {
-                NSString *first = ABMultiValueCopyValueAtIndex(firstName, 0);
-                NSString *last = ABMultiValueCopyValueAtIndex(lastName, 0);
+            
+            
+            NSScanner *scanner = [NSScanner scannerWithString:phoneNumber];  
+            //define the allowed characters, here only numbers from one to three, equal and plus  
+            
+            NSMutableString *filteredNumber = [[NSMutableString alloc] initWithCapacity:phoneNumber.length];
+            NSCharacterSet *allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"]; 
+            
+            while ([scanner isAtEnd] == NO) {  
+                NSString *buffer;  
+                if ([scanner scanCharactersFromSet:allowedChars intoString:&buffer]) {  
+                    [filteredNumber appendString:buffer];       
+                } else {  
+                    [scanner setScanLocation:([scanner scanLocation] + 1)];  
+                }  
+            }
+            
+            NSLog(@"Filtered Number: %@", filteredNumber);
+            NSLog(@"Number: %@", number);
+            if([filteredNumber isEqualToString:number]) {
+                NSString *first = firstName;
+                NSString *last = lastName;
                 return [NSString stringWithFormat:@"%@ %@", first, last];
             }            
         }
     }
-    return [NSString stringWithFormat:@"%d", number];
-
+    return number;
 }
+
+-(void) updateFriends {
+    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, userId];
+    
+    NSString *jsonString = [Resource get:url];
+    if (jsonString) {
+        NSDictionary *dict = [jsonString objectFromJSONString];
+        friends = [[NSMutableArray alloc] init];
+        
+        NSArray *friendsResult = [dict valueForKey:@"friends"];
+        
+        for (NSDictionary *friend in friendsResult) {
+            NSLog(@"%@", [friend valueForKey:@"phone_number"]);
+            User *f = [[User alloc ]initWithDictionary:friend];
+            [friends addObject:f];
+        }
+    }
+    
+}
+
 
 - (void) dealloc {
     [phoneNumber release];
