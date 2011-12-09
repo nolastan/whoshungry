@@ -12,7 +12,6 @@
 {
     IBOutlet UITableView *table;
     IBOutlet UIPickerView *filterPicker;
-    IBOutlet UIToolbar *filterBar;
     NSArray *names;
     NSArray *times;
     NSString *filterText;
