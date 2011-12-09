@@ -8,6 +8,7 @@
 
 #import "whoshungryAppDelegate.h"
 #import "begin.h"
+#import "home.h"
 #import "User.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
@@ -48,11 +49,22 @@
         }
     }
     
-    
-    
-    UIViewController *beginControl = [[[begin alloc] init] autorelease];
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:beginControl];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+	NSString *phoneNumber = nil;
+	
+	if (standardUserDefaults) {
+		phoneNumber = [standardUserDefaults objectForKey:@"defaultPhone"];
+    }
+    UINavigationController *nav;
+    if(phoneNumber != nil) {
+        User *me = [[User alloc] initWithPhoneNumber:phoneNumber];
+        home *homeController = [[[home alloc] init] autorelease];
+        [homeController setMyUser:me];
+        nav = [[UINavigationController alloc] initWithRootViewController:homeController];
+    } else {
+        begin *beginContoller = [[[begin alloc] init] autorelease];
+        nav = [[UINavigationController alloc] initWithRootViewController:beginContoller];
+    }
     
     
     [self.window addSubview:nav.view];

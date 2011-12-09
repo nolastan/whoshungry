@@ -17,13 +17,7 @@
     if (self) {
         // Custom initialization
 //        Why is this not working!?!?!
-        self.comment = @"This is the comment";
-        self.time = @"12-2 Today";
-        self.name = @"Stan Rosenthal";
-        commentText.text = @"F!";
-        timeLabel.text = [NSString stringWithFormat:@"Available %s", self.time];
-        self.title = name;
-    }
+            }
     return self;
 }
 
@@ -40,6 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.comment = @"This is the comment";
+    self.time = @"12-2 Today";
+    self.name = @"Stan Rosenthal";
+    commentText.text = @"F!";
+    timeLabel.text = [NSString stringWithFormat:@"Available %s", self.time];
+    self.title = name;
+
     // Do any additional setup after loading the view from its nib.
 }
 

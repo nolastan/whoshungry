@@ -34,6 +34,13 @@
     [h setMyUser:currentUser];
     
     [self.navigationController pushViewController:h animated:YES];
+    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+	if (standardUserDefaults) {
+		[standardUserDefaults setObject:phoneNumber forKey:@"defaultPhone"];
+		[standardUserDefaults synchronize];
+	}
 }
 
 - (void)didReceiveMemoryWarning

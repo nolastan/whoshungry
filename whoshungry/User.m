@@ -14,7 +14,7 @@
 
 @implementation User
 
-static NSString *siteURL = @"http://localhost:3000";
+static NSString *siteURL = @"http://whoshungry.heroku.com/";
 
 @synthesize phoneNumber;
 @synthesize availability;
@@ -64,9 +64,6 @@ static NSString *siteURL = @"http://localhost:3000";
                 [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
             }
             
-            //NSLog(@"Times: %@", times);
-            
-            
             //Add availabilities
             for (NSDictionary * t in times) {
                 NSString * dayOfWeek = [t objectForKey:@"dow"];
@@ -81,6 +78,7 @@ static NSString *siteURL = @"http://localhost:3000";
                 
                 [[availability objectAtIndex:dayIndex] addObject:interval];
             }
+            NSLog(@"%@", availability);
         
         }
     }
