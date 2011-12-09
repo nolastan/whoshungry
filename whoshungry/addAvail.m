@@ -116,6 +116,8 @@
         if(indexPath.row == 0){
             cell.timeLabel.text = @"Start Time";
             cell.daysLabel.text = self.startTime;
+            [cell becomeFirstResponder];
+
         }
         if(indexPath.row == 1){
             cell.timeLabel.text = @"End Time";
@@ -173,7 +175,9 @@
 
 - (IBAction)save:(id)sender
 {
-    [myUser addAvailability:[dayPicker getSelectedRow], startTime:[[self getStartTime], endTime:[self getEndTime]]];
+//    [myUser addAvailability:@"agh", startTime:[[self getStartTime], endTime:[self getEndTime]]];
+    NSLog(@"Save");
+    [self dismissModalViewControllerAnimated:YES];   
 }
 -(NSString*)getStartTime{
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
