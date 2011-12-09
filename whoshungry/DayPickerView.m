@@ -14,7 +14,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        selectedRow = 0;
     }
     return self;
 }
@@ -43,6 +43,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(int)getSelectedRow{
+    return selectedRow;
+}
+
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
     
     return 1;
@@ -60,6 +65,7 @@
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     NSLog(@"Selected day: %@. Index of selected day: %i", [days objectAtIndex:row], row);
+    selectedRow = row;
 }
 
 - (void)viewDidUnload

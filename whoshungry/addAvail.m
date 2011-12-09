@@ -22,6 +22,15 @@
     }
     return self;
 }
+
+- (id) initWithUserObject:(User *)user {
+    self = [super init];
+    if (self) {
+        myUser = user;
+    }
+    return self;
+}
+
 -(IBAction)cancel:(id)sender{
     [self dismissModalViewControllerAnimated:YES];   
 }
@@ -133,15 +142,26 @@
 
 - (IBAction)save:(id)sender
 {
-    NSLog(@"Save");
+    [myUser addAvailability:[dayPicker getSelectedRow], startTime:[[self getStartTime], endTime:[self getEndTime]]];
 }
-
+-(NSString*)getStartTime{
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"h:mm a"];
+    [outputFormatter autorelease];
+    return [outputFormatter stringFromDate:self.timePicker.date];   
+}
+-(NSString*)getEndTime{
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"h:mm a"];
+    [outputFormatter autorelease];
+    [outputFormatter stringFromDate:self.timePicker.date];
+    
+}
 - (IBAction)saveStartTime:(id)sender{
     NSLog(@"Save Start Time");
   
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
-    
 //  [outputFormatter stringFromDate:self.timePicker.date];
     
     [outputFormatter release];    
