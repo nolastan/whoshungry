@@ -10,6 +10,7 @@
 #import "addAvail.h"
 #import "editAvail.h"
 #import "availCell.h"
+#import "FoodTime.h"
 
 @implementation myAvail
 @synthesize items;
@@ -129,10 +130,10 @@
     
     // Configure the cell.
     //cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
-    NSDictionary *cellInfo = [[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
+    FoodTime *cellInfo = [[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
 
-    NSString *start = [cellInfo objectForKey:@"start"];
-    NSString *end = [cellInfo objectForKey:@"end"];
+    NSString *start = [cellInfo startTime];
+    NSString *end = [cellInfo endTime];
 
     
     cell.timeLabel.text = [NSString stringWithFormat:@"%@-%@", start, end];
@@ -144,7 +145,7 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *editAvailController = [[editAvail alloc] initWithUserAndAvail:myUser dow:[indexPath section] index:[indexPath row]];
+    UIViewController *editAvailController = [[editAvail alloc] initWithUserAndAvail:myUser time:[[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]]];
     [self.navigationController pushViewController:editAvailController animated:YES];       
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }

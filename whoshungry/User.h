@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FoodTime.h"
 
 @interface User : NSObject {
     NSString *phoneNumber;

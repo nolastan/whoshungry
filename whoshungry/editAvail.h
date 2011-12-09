@@ -12,19 +12,16 @@
 @interface editAvail : UIViewController
 {
     IBOutlet UITableView *table;
-    NSDictionary * info;
     User * myUser;
-    int day;
-    int row;
+    FoodTime * foodTime;
 
 }
 
-@property (nonatomic, retain) NSDictionary * info;
 @property (nonatomic, retain) User * myUser;
-@property (nonatomic) int day, row;
+@property (nonatomic, retain) FoodTime * foodTime;
 
 
-- (id) initWithUserAndAvail:(User *)user dow:(int)day index:(int)row;
+- (id) initWithUserAndAvail:(User *)user time:(FoodTime *)ft;
 
 - (IBAction)deleteItem;
 @end

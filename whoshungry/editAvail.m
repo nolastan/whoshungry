@@ -10,7 +10,7 @@
 #import "availCell.h"
 
 @implementation editAvail
-@synthesize myUser, day, row, info;
+@synthesize myUser, foodTime;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,14 +22,11 @@
     return self;
 }
 
-- (id) initWithUserAndAvail:(User *)user dow:(int)day index:(int)row {
+- (id) initWithUserAndAvail:(User *)user time:(FoodTime *)ft {
     self = [super init];
     if (self) {
         myUser = user;
-        self.day = day;
-        self.row = row;
-        
-        self.info = [[[myUser availability] objectAtIndex:self.day] objectAtIndex:self.row];
+        foodTime = ft;
         
     }
     return self;
@@ -109,15 +106,15 @@ titleForHeaderInSection:(NSInteger)section
     {
         if (indexPath.row == 0){    
             cell.timeLabel.text = @"Start Time";
-            cell.daysLabel.text = [info objectForKey:@"start"];
+            cell.daysLabel.text = [foodTime startTime];
         }
         if (indexPath.row == 1){    
             cell.timeLabel.text = @"End Time";
-            cell.daysLabel.text = [info objectForKey:@"end"];
+            cell.daysLabel.text = [foodTime endTime];
         }
         if (indexPath.row == 2){    
             cell.timeLabel.text = @"Days";
-            cell.daysLabel.text = [NSString stringWithFormat:@"%i", day];
+            cell.daysLabel.text = [NSString stringWithFormat:@"%i", [foodTime dow]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
@@ -125,7 +122,7 @@ titleForHeaderInSection:(NSInteger)section
     {
         if (indexPath.row == 0){    
         cell.timeLabel.text = @"Notes";
-        cell.daysLabel.text = @"";
+        cell.daysLabel.text = [foodTime comment];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
@@ -135,7 +132,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 -(IBAction)deleteItem {
-    [[[myUser availability] objectAtIndex:day] removeObjectAtIndex:row];
+    [[[myUser availability] objectAtIndex:[foodTime dow]] removeObject:foodTime];
     [myUser updateRemote];
     [[self navigationController] popViewControllerAnimated:YES];
 }

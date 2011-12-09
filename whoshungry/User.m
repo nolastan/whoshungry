@@ -62,6 +62,8 @@ static NSString *siteURL = @"http://localhost:3000";
             }
             
             [self getAvailFromRemote];
+            
+            NSLog(@"%@",availability);
         
         } else {
             NSLog(@"NO REMOTE USER");
@@ -83,8 +85,7 @@ static NSString *siteURL = @"http://localhost:3000";
     availability = [[NSMutableDictionary alloc] init];
     
     if (jsonString) {
-        NSDictionary *dict = [jsonString objectFromJSONString];
-        NSArray *times = [dict valueForKey:@"food_times"];
+        NSArray *times = [jsonString objectFromJSONString];
         availability = [[NSMutableArray alloc] initWithCapacity:7];
         for (int i = 0; i < 7; ++i) {
             [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
@@ -92,17 +93,10 @@ static NSString *siteURL = @"http://localhost:3000";
         
         //Add availabilities
         for (NSDictionary * t in times) {
-            NSString * dayOfWeek = [t objectForKey:@"dow"];
-            int dayIndex = [dayOfWeek intValue];
-            NSString * start = [t objectForKey:@"start"];
             
-            NSString * end = [t objectForKey:@"end" ];
+            FoodTime *ft = [[[FoodTime alloc] initWithDict:t] autorelease];
             
-            
-            NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
-            
-            
-            [[availability objectAtIndex:dayIndex] addObject:interval];
+            [[availability objectAtIndex:[ft dow]] addObject:ft];
         }
     }
     
@@ -219,29 +213,13 @@ static NSString *siteURL = @"http://localhost:3000";
     
     
     NSMutableArray *food_times = [[NSMutableArray alloc] init ];
-    int i = 0;
     for (NSArray *times in self.availability) {
-        for (NSDictionary *food_time in times) {
-            
-            
-            NSString *start = [[food_time objectForKey:@"start"] retain];
-            NSString *end = [[food_time objectForKey:@"end"] retain];
-            NSDictionary *finalDict = [[[NSDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", [NSString stringWithFormat:@"%d", i], @"dow", nil] retain];
-            
-            [start release];
-            [end release];
-            
-            [food_times addObject:finalDict];
-            [finalDict release];
-            
+        for (FoodTime *food_time in times) {
+            [food_times addObject:food_time];
         }
-        
-        i++;
     }
     
-    NSDictionary *avail_attrs = [[NSDictionary alloc] initWithObjectsAndKeys:food_times , @"food_times_attributes", nil]; 
-    
-    [attributes setValue:avail_attrs forKey:@"avail_attributes"];
+    [attributes setValue:food_times forKey:@"food_times_attributes"];
     
     NSMutableDictionary *params = 
     [NSMutableDictionary dictionaryWithObject:attributes forKey:@"user"];
