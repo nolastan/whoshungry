@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "DayPickerView.h"
 
 @interface addAvail : UIViewController{
     IBOutlet UIDatePicker *timePicker;

@@ -24,6 +24,11 @@
         self.navigationItem.rightBarButtonItem = groupButton;
         [groupButton release];
         
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(saveFilter:)];
+        self.navigationItem.rightBarButtonItem = doneButton;
+        [doneButton release];
+        
 //    TODO: LOAD ITEMS FROM SERVER
         self.names = [NSArray arrayWithObjects:@"Paul Carleton", @"Brian Fink", @"Stan Rosenthal", nil];
         self.times = [NSArray arrayWithObjects:@"12-12:30", @"12:30-1", @"1-2, 4-6", nil];
@@ -47,6 +52,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    filterBar.hidden = YES;
 }
 
 - (void)viewDidUnload
@@ -156,6 +162,8 @@ titleForHeaderInSection:(NSInteger)section
     if([indexPath section] == 0)
     {
         NSLog(@"change day");
+        filterBar.hidden = NO;
+        
     }
     if([indexPath section] == 1)
     {
@@ -171,5 +179,8 @@ titleForHeaderInSection:(NSInteger)section
 - (IBAction)toggleCompatible:(id)sender{
     NSLog(@"Toggle compatibility");
 }
-
+-(IBAction)saveFilter:(id)sender{
+    NSLog(@"Save Filter");
+    filterBar.hidden = YES;
+}
 @end

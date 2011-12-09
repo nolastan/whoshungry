@@ -11,12 +11,15 @@
 @interface friendsAvail : UIViewController
 {
     IBOutlet UITableView *table;
+    IBOutlet UIPickerView *filterPicker;
+    IBOutlet UIToolbar *filterBar;
     NSArray *names;
     NSArray *times;
     NSString *filterText;
     BOOL *compatibleOnly;
 }
 -(IBAction)toggleCompatible:(id)sender;
+-(IBAction)saveFilter:(id)sender;
 
 //@property (nonatomic, retain) NSString *compatibleOnly;
 @property (nonatomic, retain) NSArray *times;
