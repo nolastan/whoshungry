@@ -10,13 +10,14 @@
 #import "availCell.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, notes, timePicker;
+@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, daysOfWeek, dayPicker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.daysOfWeek = [NSArray arrayWithObjects:@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", nil];
         
     }
     return self;
@@ -40,6 +41,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.timePicker.hidden=YES;
+    self.dayPicker.hidden=YES;
+    
+
 }
 
 - (void)viewDidUnload
@@ -104,19 +108,53 @@
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([indexPath section] == 0){
+        self.dayPicker.hidden = YES;
         self.timePicker.hidden = NO;
+        self.endTimePicker.hidden = YES;
     }
     if([indexPath section] == 1){
-        self.timePicker.hidden = NO;
+        self.dayPicker.hidden = YES;
+        self.endTimePicker.hidden = NO;
+        self.timePicker.hidden = YES;
     }
     if([indexPath section] == 2){
+        self.dayPicker.hidden = NO;
+        self.endTimePicker.hidden = YES;
         self.timePicker.hidden = YES;
     }
     if([indexPath section] == 3){
         self.timePicker.hidden = YES;
+        self.endTimePicker.hidden = YES;
+        self.dayPicker.hidden = YES;
     }
 
 	
+}
+
+- (IBAction)save:(id)sender
+{
+    NSLog(@"Save");
+}
+
+- (IBAction)saveStartTime:(id)sender{
+    NSLog(@"Save Start Time");
+  
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"h:mm a"];
+    
+//  [outputFormatter stringFromDate:self.timePicker.date];
+    
+    [outputFormatter release];    
+}
+- (IBAction)saveEndTime:(id)sender{
+    NSLog(@"Save End Time");
+    
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"h:mm a"];
+    
+    //  [outputFormatter stringFromDate:self.timePicker.date];
+    
+    [outputFormatter release];    
 }
 
 @end
