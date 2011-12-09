@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSString *name;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
-
+-(void)getAvailFromRemote;
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
 -(NSString*)createFriendship:(NSString*)number;

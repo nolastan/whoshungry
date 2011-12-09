@@ -29,20 +29,25 @@ static NSString *siteURL = @"http://localhost:3000";
         self.availability = [dict valueForKey:@"availability"];
         self.userId = [dict valueForKey:@"id"];
         self.name = [self getNameFromPhoneNumber:self.phoneNumber];
+        
+        [self getAvailFromRemote];
     }
     
     return self;
     
 }
 
--(id) initWithPhoneNumber:(NSString *) phoneNumber {
+-(id) initWithPhoneNumber:(NSString *) phoneNum {
     if (self = [super init]) {
-        NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, phoneNumber];
+        NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, phoneNum];
+        
+        phoneNumber = phoneNum;
 
         NSString *jsonString = [Resource get:url];
         availability = [[NSMutableDictionary alloc] init];
+        NSLog(@"Json result: %@", jsonString);
         
-        if (jsonString) {
+        if (![jsonString isEqualToString:@"null"]) {
             NSDictionary *dict = [jsonString objectFromJSONString];
             userId = [dict valueForKey:@"id"];
             NSLog(@"Got dict from remote id is: %@", jsonString);
@@ -56,35 +61,51 @@ static NSString *siteURL = @"http://localhost:3000";
                 [friends addObject:f];
             }
             
-            
-            NSDictionary *avails = [dict valueForKey:@"avail"];
-            NSArray *times = [avails valueForKey:@"food_times"];
-            availability = [[NSMutableArray alloc] initWithCapacity:7];
-            for (int i = 0; i < 7; ++i) {
-                [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
-            }
-            
-            //NSLog(@"Times: %@", times);
-            
-            
-            //Add availabilities
-            for (NSDictionary * t in times) {
-                NSString * dayOfWeek = [t objectForKey:@"dow"];
-                int dayIndex = [dayOfWeek intValue];
-                NSString * start = [t objectForKey:@"start"];
-                
-                NSString * end = [t objectForKey:@"end" ];
-                
-                
-                NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
-                
-                
-                [[availability objectAtIndex:dayIndex] addObject:interval];
-            }
+            [self getAvailFromRemote];
         
+        } else {
+            NSLog(@"NO REMOTE USER");
+            
+            NSLog(@"Posting: %@", [self params]);
+            [self createRemote];
+            
         }
     }
+    NSLog(@"Params: %@", [self params]);
     return  self;
+}
+
+-(void)getAvailFromRemote {
+    
+    NSString *url = [NSString stringWithFormat:@"%@/users/avail/%@.json",siteURL, userId];
+    
+    NSString *jsonString = [Resource get:url];
+    availability = [[NSMutableDictionary alloc] init];
+    
+    if (jsonString) {
+        NSDictionary *dict = [jsonString objectFromJSONString];
+        NSArray *times = [dict valueForKey:@"food_times"];
+        availability = [[NSMutableArray alloc] initWithCapacity:7];
+        for (int i = 0; i < 7; ++i) {
+            [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
+        }
+        
+        //Add availabilities
+        for (NSDictionary * t in times) {
+            NSString * dayOfWeek = [t objectForKey:@"dow"];
+            int dayIndex = [dayOfWeek intValue];
+            NSString * start = [t objectForKey:@"start"];
+            
+            NSString * end = [t objectForKey:@"end" ];
+            
+            
+            NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
+            
+            
+            [[availability objectAtIndex:dayIndex] addObject:interval];
+        }
+    }
+    
 }
 
 -(NSString*)getNameFromPhoneNumber:(NSString*)number{
@@ -189,7 +210,32 @@ static NSString *siteURL = @"http://localhost:3000";
 - (NSString *)params {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     [attributes setValue:self.phoneNumber forKey:@"phone_number"];
-    [attributes setValue:self.availability forKey:@"availability"];
+    
+    
+    NSMutableArray *food_times = [[NSMutableArray alloc] init ];
+    NSInteger *i = 0;
+    for (NSArray *times in self.availability) {
+        for (NSDictionary *food_time in times) {
+            
+            
+            NSString *start = [[food_time objectForKey:@"start"] retain];
+            NSString *end = [[food_time objectForKey:@"end"] retain];
+            NSDictionary *finalDict = [[[NSDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", 0, @"dow", nil] retain];
+            
+            [start release];
+            [end release];
+            
+            [food_times addObject:finalDict];
+            [finalDict release];
+            
+        }
+        
+        i++;
+    }
+    
+    NSDictionary *avail_attrs = [[NSDictionary alloc] initWithObjectsAndKeys:food_times , @"food_times_attributes", nil]; 
+    
+    [attributes setValue:avail_attrs forKey:@"avail_attributes"];
     
     NSMutableDictionary *params = 
     [NSMutableDictionary dictionaryWithObject:attributes forKey:@"user"];
