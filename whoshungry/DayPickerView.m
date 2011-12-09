@@ -2,7 +2,7 @@
 //  DayPickerView.m
 //  whoshungry
 //
-//  Created by Brian Fink on 12/8/11.
+//  Created by Brian Fink on 12/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,15 +10,11 @@
 
 @implementation DayPickerView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        selectedRow = 0;
-    }
+-(DayPickerView*)initBasic{
+    [self init];
+    dayPicker.hidden = NO;
     return self;
 }
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -32,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    days = [[NSMutableArray alloc] init];
+    days = [[NSMutableArray alloc] initWithCapacity:7];
     [days addObject:@"Sunday"];
     [days addObject:@"Monday"];
     [days addObject:@"Tuesday"];
@@ -40,32 +36,13 @@
     [days addObject:@"Thursday"];
     [days addObject:@"Friday"];
     [days addObject:@"Saturday"];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
--(int)getSelectedRow{
-    return selectedRow;
-}
-
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-    
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    return [days count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [days objectAtIndex:row];
-}
-
-- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-    NSLog(@"Selected day: %@. Index of selected day: %i", [days objectAtIndex:row], row);
-    selectedRow = row;
+-(void)setHidden:(bool)op{
+    dayPicker.hidden = op;
 }
 
 - (void)viewDidUnload
@@ -79,6 +56,27 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+//PickerViewController.m
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+    
+    return 1;
+}
+
+//PickerViewController.m
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return [days count];
+}
+//PickerViewController.m
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [days objectAtIndex:row];
+}
+//PickerViewController.m
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    NSLog(@"Selected Color: %@. Index of selected color: %i", [days objectAtIndex:row], row);
 }
 
 @end

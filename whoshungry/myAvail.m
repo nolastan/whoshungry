@@ -45,7 +45,7 @@
 
 - (void)addAction
 {
-    UIViewController *h = [[addAvail alloc] initWithUserObject:myUser];
+    UIViewController *h = [[addAvail alloc] init];
     [self.navigationController presentModalViewController:h animated:YES];    
 }
 
