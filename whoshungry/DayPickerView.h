@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DayPickerView : UIViewController
+@interface DayPickerView : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>{
+    IBOutlet UIPickerView *dayPicker;
+    NSMutableArray *days;
+}
 
 @end

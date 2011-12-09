@@ -32,7 +32,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    days = [[NSMutableArray alloc] init];
+    [days addObject:@"Sunday"];
+    [days addObject:@"Monday"];
+    [days addObject:@"Tuesday"];
+    [days addObject:@"Wednesday"];
+    [days addObject:@"Thursday"];
+    [days addObject:@"Friday"];
+    [days addObject:@"Saturday"];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+    
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return [days count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [days objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    NSLog(@"Selected day: %@. Index of selected day: %i", [days objectAtIndex:row], row);
 }
 
 - (void)viewDidUnload
