@@ -67,6 +67,7 @@ static NSString *siteURL = @"http://localhost:3000";
             //NSLog(@"Times: %@", times);
             
             
+            //Add availabilities
             for (NSDictionary * t in times) {
                 NSString * dayOfWeek = [t objectForKey:@"dow"];
                 int dayIndex = [dayOfWeek intValue];
@@ -80,15 +81,7 @@ static NSString *siteURL = @"http://localhost:3000";
                 
                 [[availability objectAtIndex:dayIndex] addObject:interval];
             }
-            
-            NSLog(@"Final Avail: %@", availability);
         
-            /*NSEnumerator *keyEnum = [avails keyEnumerator];
-            NSString *key;
-            while(key = [keyEnum nextObject]) {
-                NSDictionary *thisDir = [avails objectForKey:key];
-                [availability setValue:thisDir forKey:key];
-            }*/
         }
     }
     return  self;
@@ -122,6 +115,7 @@ static NSString *siteURL = @"http://localhost:3000";
             NSScanner *scanner = [NSScanner scannerWithString:phoneNumber];  
             //define the allowed characters, here only numbers from one to three, equal and plus  
             
+            //Filter out ('s and spaces
             NSMutableString *filteredNumber = [[NSMutableString alloc] initWithCapacity:phoneNumber.length];
             NSCharacterSet *allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"]; 
             
@@ -134,8 +128,7 @@ static NSString *siteURL = @"http://localhost:3000";
                 }  
             }
             
-            NSLog(@"Filtered Number: %@", filteredNumber);
-            NSLog(@"Number: %@", number);
+            //Check if it's a match
             if([filteredNumber isEqualToString:number]) {
                 NSString *first = firstName;
                 NSString *last = lastName;
