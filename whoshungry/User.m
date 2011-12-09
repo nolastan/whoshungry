@@ -153,9 +153,14 @@ static NSString *siteURL = @"http://whoshungry.heroku.com/";
             [friends addObject:f];
         }
     }
-    
 }
 
+-(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:startTime forKey:@"start"];
+    [dict setObject:endTime forKey:@"end"];
+    [[availability objectAtIndex:dayNumber] addObject:dict];    
+}
 
 - (void) dealloc {
     [phoneNumber release];

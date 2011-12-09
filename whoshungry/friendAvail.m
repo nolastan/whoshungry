@@ -38,7 +38,7 @@
     self.time = @"12-2 Today";
     self.name = @"Stan Rosenthal";
     commentText.text = @"F!";
-    timeLabel.text = [NSString stringWithFormat:@"Available %s", self.time];
+    timeLabel.text = [NSString stringWithFormat:@"Available %@", self.time];
     self.title = name;
 
     // Do any additional setup after loading the view from its nib.

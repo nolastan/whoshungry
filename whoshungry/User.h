@@ -27,6 +27,7 @@
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
 -(NSString*)createFriendship:(NSString*)number;
+-(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime;
 + (NSArray *) findAllRemote;
 +(NSString*)checkUserExistence:(NSString*)number;
 
