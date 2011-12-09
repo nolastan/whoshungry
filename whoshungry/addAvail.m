@@ -62,7 +62,6 @@
     self.endTimePicker.hidden = YES;
     self.commentBox.hidden = YES;
     self.commentBar.hidden = YES;
-
 }
 
 - (void)viewDidUnload
