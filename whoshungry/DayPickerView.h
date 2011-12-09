@@ -11,6 +11,9 @@
 @interface DayPickerView : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>{
     IBOutlet UIPickerView *dayPicker;
     NSMutableArray *days;
+    int selectedRow;
 }
+
+-(int)getSelectedRow;
 
 @end

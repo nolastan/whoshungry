@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface addAvail : UIViewController{
     IBOutlet UIDatePicker *timePicker;
@@ -19,11 +20,15 @@
     NSString *days;
     NSString *notes;
     NSArray *dayOfWeek;
+    User *myUser;
 }
+-(NSString*)getStartTime;
+-(NSString*)getEndTime;
 -(IBAction)cancel:(id)sender;
 -(IBAction)save:(id)sender;
 -(IBAction)saveStartTime:(id)sender;
 -(IBAction)saveEndTime:(id)sender;
+- (id) initWithUserObject:(User *)user;
 
 @property (nonatomic, retain) NSArray *daysOfWeek;
 @property (nonatomic, retain) NSString *startTime;
