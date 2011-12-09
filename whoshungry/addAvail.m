@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [picker setOpaque:NO];
     // Do any additional setup after loading the view from its nib.
 }
 
