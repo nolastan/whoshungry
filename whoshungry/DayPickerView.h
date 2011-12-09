@@ -2,7 +2,7 @@
 //  DayPickerView.h
 //  whoshungry
 //
-//  Created by Brian Fink on 12/8/11.
+//  Created by Brian Fink on 12/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,9 +11,8 @@
 @interface DayPickerView : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>{
     IBOutlet UIPickerView *dayPicker;
     NSMutableArray *days;
-    int selectedRow;
 }
-
--(int)getSelectedRow;
+-(DayPickerView*)initBasic;
+-(void)setHidden:(bool)op;
 
 @end

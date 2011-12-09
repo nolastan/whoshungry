@@ -14,7 +14,7 @@
 
 @implementation User
 
-static NSString *siteURL = @"http://localhost:3000";
+static NSString *siteURL = @"http://whoshungry.heroku.com";
 
 @synthesize phoneNumber;
 @synthesize availability;
@@ -45,6 +45,7 @@ static NSString *siteURL = @"http://localhost:3000";
 
         NSString *jsonString = [Resource get:url];
         availability = [[NSMutableDictionary alloc] init];
+        NSLog(@"URL:%@", url);
         NSLog(@"Json result: %@", jsonString);
         
         if (![jsonString isEqualToString:@"null"]) {
