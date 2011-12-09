@@ -7,20 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface editAvail : UIViewController
 {
     IBOutlet UITableView *table;
-    NSString *days;
-    NSString *start;
-    NSString *end;
-    NSString *notes;
+    NSDictionary * info;
+    User * myUser;
+    int day;
+    int row;
 
 }
 
-@property (nonatomic, retain) NSString *days;
-@property (nonatomic, retain) NSString *start;
-@property (nonatomic, retain) NSString *end;
-@property (nonatomic, retain) NSString *notes;
+@property (nonatomic, retain) NSDictionary * info;
+@property (nonatomic, retain) User * myUser;
+@property (nonatomic) int day, row;
 
+
+- (id) initWithUserAndAvail:(User *)user dow:(int)day index:(int)row;
+
+- (IBAction)deleteItem;
 @end

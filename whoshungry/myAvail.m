@@ -89,7 +89,25 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.days count];
+    return [[[myUser availability] objectAtIndex:section] count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 7;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        default:
+        case 0: return @"Sunday";
+        case 1: return @"Monday";
+        case 2: return @"Tuesday";
+        case 3: return @"Wednesday";
+        case 4: return @"Thursday";
+        case 5: return @"Friday";
+        case 6: return @"Saturday";
+        
+    }
 }
 
 // Customize the appearance of table view cells.
@@ -111,17 +129,14 @@
     
     // Configure the cell.
     //cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
-    NSArray * times = [self.items objectAtIndex: [indexPath row]];
-    NSMutableString * timeLblTxt = [[NSMutableString alloc] init ];
-    for (NSDictionary * interval in times) {
-        NSString *start = [interval objectForKey:@"start"];
-        NSString *end = [interval objectForKey:@"end"];
-        
-        [timeLblTxt appendFormat:@"%@-%@pm", start, end]; 
-    }
+    NSDictionary *cellInfo = [[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
+
+    NSString *start = [cellInfo objectForKey:@"start"];
+    NSString *end = [cellInfo objectForKey:@"end"];
+
     
-    cell.timeLabel.text = timeLblTxt;
-    cell.daysLabel.text = [self.days objectAtIndex: [indexPath row]];
+    cell.timeLabel.text = [NSString stringWithFormat:@"%@-%@", start, end];
+    cell.daysLabel.text = @"";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -129,7 +144,7 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *editAvailController = [[editAvail alloc] init ];
+    UIViewController *editAvailController = [[editAvail alloc] initWithUserAndAvail:myUser dow:[indexPath section] index:[indexPath row]];
     [self.navigationController pushViewController:editAvailController animated:YES];       
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }

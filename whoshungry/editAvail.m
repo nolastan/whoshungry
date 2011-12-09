@@ -10,7 +10,7 @@
 #import "availCell.h"
 
 @implementation editAvail
-@synthesize start, end, days, notes;
+@synthesize myUser, day, row, info;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -18,10 +18,19 @@
     if (self) {
         // Custom initialization
         // TODO: dynamic values
-        start = @"12pm";
-        end = @"2:30pm";
-        days = @"Mon Wed Fri";
-        notes = @"Holmes' Lounge";
+    }
+    return self;
+}
+
+- (id) initWithUserAndAvail:(User *)user dow:(int)day index:(int)row {
+    self = [super init];
+    if (self) {
+        myUser = user;
+        self.day = day;
+        self.row = row;
+        
+        self.info = [[[myUser availability] objectAtIndex:self.day] objectAtIndex:self.row];
+        
     }
     return self;
 }
@@ -100,15 +109,15 @@ titleForHeaderInSection:(NSInteger)section
     {
         if (indexPath.row == 0){    
             cell.timeLabel.text = @"Start Time";
-            cell.daysLabel.text = start;
+            cell.daysLabel.text = [info objectForKey:@"start"];
         }
         if (indexPath.row == 1){    
             cell.timeLabel.text = @"End Time";
-            cell.daysLabel.text = start;
+            cell.daysLabel.text = [info objectForKey:@"end"];
         }
         if (indexPath.row == 2){    
             cell.timeLabel.text = @"Days";
-            cell.daysLabel.text = days;
+            cell.daysLabel.text = [NSString stringWithFormat:@"%i", day];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
@@ -125,6 +134,11 @@ titleForHeaderInSection:(NSInteger)section
     return cell;
 }
 
+-(IBAction)deleteItem {
+    [[[myUser availability] objectAtIndex:day] removeObjectAtIndex:row];
+    [myUser updateRemote];
+    [[self navigationController] popViewControllerAnimated:YES];
+}
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *editAvailController = [[editAvail alloc] init ];
