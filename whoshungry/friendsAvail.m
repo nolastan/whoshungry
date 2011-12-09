@@ -112,6 +112,7 @@ titleForHeaderInSection:(NSInteger)section
         if (indexPath.row == 0){    
             cell.toggleLabel.text = @"Show only compatible times";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell.toggle addTarget:self action:@selector(toggleCompatible:) forControlEvents:UIControlEventValueChanged];
 
         }        
         return cell;
@@ -165,6 +166,10 @@ titleForHeaderInSection:(NSInteger)section
 - (void) editMode{
     NSLog(@"entering edit mode");
 //    [table cellForRowAtIndexPath:0].accessoryType = UITableViewCellAccessoryCheckmark;
+}
+
+- (IBAction)toggleCompatible:(id)sender{
+    NSLog(@"Toggle compatibility");
 }
 
 @end

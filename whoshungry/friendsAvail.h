@@ -16,6 +16,7 @@
     NSString *filterText;
     BOOL *compatibleOnly;
 }
+-(IBAction)toggleCompatible:(id)sender;
 
 //@property (nonatomic, retain) NSString *compatibleOnly;
 @property (nonatomic, retain) NSArray *times;
