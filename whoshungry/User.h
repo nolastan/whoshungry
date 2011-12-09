@@ -23,11 +23,13 @@
 @property (nonatomic, copy) NSString *name;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
-
+-(void)getAvailFromRemote;
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
 -(NSString*)createFriendship:(NSString*)number;
 -(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime;
+
+-(NSString*)params;
 + (NSArray *) findAllRemote;
 +(NSString*)checkUserExistence:(NSString*)number;
 
