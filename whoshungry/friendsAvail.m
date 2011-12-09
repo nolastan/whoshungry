@@ -9,11 +9,10 @@
 #import "friendsAvail.h"
 #import "availCell.h"
 #import "toggleCell.h"
+#import "friendAvail.h"
 
 @implementation friendsAvail
-@synthesize names;
-@synthesize times;
-@synthesize filterText;
+@synthesize names, times, filterText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -152,13 +151,15 @@ titleForHeaderInSection:(NSInteger)section
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     if([indexPath section] == 0)
     {
         NSLog(@"change day");
     }
     if([indexPath section] == 1)
     {
-        NSLog(@"load avail detail");        
+        UIViewController *friendAvailController = [[friendAvail alloc] init ];
+        [self.navigationController pushViewController:friendAvailController animated:YES];       
     }
 }
 - (void) editMode{

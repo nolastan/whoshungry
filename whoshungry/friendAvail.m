@@ -9,12 +9,20 @@
 #import "friendAvail.h"
 
 @implementation friendAvail
+@synthesize name, time, comment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+//        Why is this not working!?!?!
+        self.comment = @"This is the comment";
+        self.time = @"12-2 Today";
+        self.name = @"Stan Rosenthal";
+        commentText.text = @"F!";
+        timeLabel.text = [NSString stringWithFormat:@"Available %s", self.time];
+        self.title = name;
     }
     return self;
 }

@@ -9,5 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface friendAvail : UIViewController
+{
+    NSString *name;
+    NSString *time;
+    NSString *comment;
+    IBOutlet UILabel *timeLabel;
+    IBOutlet UITextView *commentText;
+}
+
+//@property (nonatomic, retain) NSString *compatibleOnly;
+@property (nonatomic, retain) NSString *time;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *comment;
+
 
 @end
