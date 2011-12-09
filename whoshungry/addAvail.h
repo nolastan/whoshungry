@@ -16,6 +16,8 @@
     IBOutlet UIPickerView *dayPicker;
     IBOutlet UITableView *table;
     IBOutlet UIBarButtonItem *save;
+    IBOutlet UINavigationBar *toolbar;
+    IBOutlet UITextView *commentBox;
     NSString *startTime;
     NSString *endTime;
     NSString *days;
@@ -39,5 +41,6 @@
 @property (nonatomic, retain) IBOutlet UIDatePicker *timePicker;
 @property (nonatomic, retain) IBOutlet UIDatePicker *endTimePicker;
 @property (nonatomic, retain) IBOutlet UIPickerView *dayPicker;
+@property (nonatomic, retain) IBOutlet UITextView *commentBox;
 
 @end
