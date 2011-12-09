@@ -156,11 +156,16 @@ titleForHeaderInSection:(NSInteger)section
     if([indexPath section] == 0)
     {
         NSLog(@"change day");
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(saveFilter:)];
+        self.navigationItem.rightBarButtonItem = doneButton; 
+        [doneButton release];
     }
     if([indexPath section] == 1)
     {
         UIViewController *friendAvailController = [[friendAvail alloc] init ];
-        [self.navigationController pushViewController:friendAvailController animated:YES];       
+        [self.navigationController pushViewController:friendAvailController animated:YES];
+
     }
 }
 - (void) editMode{
@@ -171,5 +176,11 @@ titleForHeaderInSection:(NSInteger)section
 - (IBAction)toggleCompatible:(id)sender{
     NSLog(@"Toggle compatibility");
 }
-
+-(IBAction)saveFilter:(id)sender{
+    NSLog(@"Save Filter");
+    UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(editMode)];
+    self.navigationItem.rightBarButtonItem = groupButton;
+    [groupButton release];
+}
 @end
