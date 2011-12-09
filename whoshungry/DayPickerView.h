@@ -11,8 +11,10 @@
 @interface DayPickerView : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>{
     IBOutlet UIPickerView *dayPicker;
     NSMutableArray *days;
+    UIViewController *parentView;
 }
 -(DayPickerView*)initBasic;
+-(DayPickerView*)initWithParentView:(UIViewController*)parentView;
 -(void)setHidden:(bool)op;
 
 @end

@@ -11,9 +11,13 @@
 @implementation DayPickerView
 
 -(DayPickerView*)initBasic{
-    [self init];
+    self = [self init];
     dayPicker.hidden = NO;
     return self;
+}
+-(DayPickerView*)initWithParentView:(UIViewController *)pView{
+    self = [self initBasic];
+    parentView = pView;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -28,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     days = [[NSMutableArray alloc] initWithCapacity:7];
     [days addObject:@"Sunday"];
     [days addObject:@"Monday"];

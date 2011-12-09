@@ -18,6 +18,7 @@
     IBOutlet UIBarButtonItem *save;
     IBOutlet UINavigationBar *toolbar;
     IBOutlet UITextView *commentBox;
+    IBOutlet UIToolbar *commentBar;
     NSString *startTime;
     NSString *endTime;
     NSString *days;
@@ -33,6 +34,7 @@
 -(IBAction)saveEndTime:(id)sender;
 -(IBAction)saveDay:(id)sender;
 - (id) initWithUserObject:(User *)user;
+-(IBAction)saveComment:(id)sender;
 
 @property (nonatomic, retain) NSArray *daysOfWeek;
 @property (nonatomic, retain) NSString *startTime;
@@ -43,5 +45,6 @@
 @property (nonatomic, retain) IBOutlet UIDatePicker *endTimePicker;
 @property (nonatomic, retain) IBOutlet DayPickerView *dayPicker;
 @property (nonatomic, retain) IBOutlet UITextView *commentBox;
+@property (nonatomic, retain) IBOutlet UIToolbar *commentBar;
 
 @end
