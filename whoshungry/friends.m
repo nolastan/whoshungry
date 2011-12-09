@@ -121,7 +121,7 @@
     
     User *user = [users objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = user.phoneNumber;
+    cell.textLabel.text = user.name;
     return cell;
 }
 

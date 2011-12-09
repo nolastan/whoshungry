@@ -37,14 +37,14 @@ static NSString *siteURL = @"http://localhost:3000";
 
 -(id) initWithPhoneNumber:(NSString *) phoneNumber {
     if (self = [super init]) {
-        NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, phoneNumber];
+        NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, phoneNumber];
 
         NSString *jsonString = [Resource get:url];
         availability = [[NSMutableDictionary alloc] init];
         
         if (jsonString) {
             NSDictionary *dict = [jsonString objectFromJSONString];
-            NSString *userId = [dict valueForKey:@"id"];
+            userId = [dict valueForKey:@"id"];
             NSLog(@"Got dict from remote id is: %@", jsonString);
             friends = [[NSMutableArray alloc] init];
             
@@ -56,14 +56,32 @@ static NSString *siteURL = @"http://localhost:3000";
                 [friends addObject:f];
             }
             
-            NSDictionary *avails = [dict valueForKey:@"availability"];
             
-            NSEnumerator *keyEnum = [avails keyEnumerator];
-            NSString *key;
-            while(key = [keyEnum nextObject]) {
-                NSDictionary *thisDir = [avails objectForKey:key];
-                [availability setValue:thisDir forKey:key];
+            NSDictionary *avails = [dict valueForKey:@"avail"];
+            NSArray *times = [avails valueForKey:@"food_times"];
+            availability = [[NSMutableArray alloc] initWithCapacity:7];
+            for (int i = 0; i < 7; ++i) {
+                [availability insertObject:[[NSMutableArray alloc]init] atIndex:i];
             }
+            
+            //NSLog(@"Times: %@", times);
+            
+            
+            //Add availabilities
+            for (NSDictionary * t in times) {
+                NSString * dayOfWeek = [t objectForKey:@"dow"];
+                int dayIndex = [dayOfWeek intValue];
+                NSString * start = [t objectForKey:@"start"];
+                
+                NSString * end = [t objectForKey:@"end" ];
+                
+                
+                NSMutableDictionary * interval = [[NSMutableDictionary alloc] initWithObjectsAndKeys:start, @"start", end, @"end", nil ];
+                
+                
+                [[availability objectAtIndex:dayIndex] addObject:interval];
+            }
+        
         }
     }
     return  self;
@@ -85,21 +103,61 @@ static NSString *siteURL = @"http://localhost:3000";
             ABMutableMultiValueRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
             
             ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue( person, kABPersonPhoneProperty);
-            CFStringRef phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            NSString *phoneNumber = ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            
+            //NSString *phoneNumber = [(NSString *)phoneNumberRef UTF8String];
             
             NSLog(@"Name : %@ %@", firstName, lastName);
-            NSLog(@"Number: %@", phoneNumber);
+            //NSLog(@"Number: %@", phoneNumber);
             
-            if(phoneNumber == number) {
-                NSString *first = ABMultiValueCopyValueAtIndex(firstName, 0);
-                NSString *last = ABMultiValueCopyValueAtIndex(lastName, 0);
+            
+            
+            NSScanner *scanner = [NSScanner scannerWithString:phoneNumber];  
+            //define the allowed characters, here only numbers from one to three, equal and plus  
+            
+            //Filter out ('s and spaces
+            NSMutableString *filteredNumber = [[NSMutableString alloc] initWithCapacity:phoneNumber.length];
+            NSCharacterSet *allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"]; 
+            
+            while ([scanner isAtEnd] == NO) {  
+                NSString *buffer;  
+                if ([scanner scanCharactersFromSet:allowedChars intoString:&buffer]) {  
+                    [filteredNumber appendString:buffer];       
+                } else {  
+                    [scanner setScanLocation:([scanner scanLocation] + 1)];  
+                }  
+            }
+            
+            //Check if it's a match
+            if([filteredNumber isEqualToString:number]) {
+                NSString *first = firstName;
+                NSString *last = lastName;
                 return [NSString stringWithFormat:@"%@ %@", first, last];
             }            
         }
     }
-    return [NSString stringWithFormat:@"%d", number];
-
+    return number;
 }
+
+-(void) updateFriends {
+    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, userId];
+    
+    NSString *jsonString = [Resource get:url];
+    if (jsonString) {
+        NSDictionary *dict = [jsonString objectFromJSONString];
+        friends = [[NSMutableArray alloc] init];
+        
+        NSArray *friendsResult = [dict valueForKey:@"friends"];
+        
+        for (NSDictionary *friend in friendsResult) {
+            NSLog(@"%@", [friend valueForKey:@"phone_number"]);
+            User *f = [[User alloc ]initWithDictionary:friend];
+            [friends addObject:f];
+        }
+    }
+    
+}
+
 
 - (void) dealloc {
     [phoneNumber release];
@@ -141,13 +199,21 @@ static NSString *siteURL = @"http://localhost:3000";
 
 -(NSString*)createFriendship:(NSString*)number {
     [User checkUserExistence:number];
-    NSString *url = [NSString stringWithFormat:@"%@/friendships/", siteURL];
-    //[Resource post:[self params] to:url];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships.json", siteURL];
+    
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:@"9" forKey:@"user_id"];
+    [attributes setValue:@"12" forKey:@"friend_id"];
+    
+    NSMutableDictionary *params = 
+    [NSMutableDictionary dictionaryWithObject:attributes forKey:@"friendship"];
+    
+    [Resource post:[attributes JSONString] to:url];
 }
 
 +(NSString*)checkUserExistence:(NSString*)number {
     NSLog(@"checking user existence");
-    NSString *url = [NSString stringWithFormat:@"%@/users/%@.json",siteURL, number];
+    NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, number];
     [Resource get:url];
 }
 

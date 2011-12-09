@@ -75,7 +75,7 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *myAvailController = [[myAvail alloc] init ];
+    UIViewController *myAvailController = [[myAvail alloc] initWithUserObject:myUser ];
     friends *friendsListController = [[friends alloc] initWithUserObject:myUser ];
     UIViewController *viewFriendsAvailController = [[friendsAvail alloc] init ];
 	if (indexPath.row == 0){

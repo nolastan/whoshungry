@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface addAvail : UIViewController
-
+@interface addAvail : UIViewController{
+    IBOutlet UIPickerView *picker;
+}
 -(IBAction)cancel:(id)sender;
 
 @end
