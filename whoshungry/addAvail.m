@@ -11,7 +11,7 @@
 #import "DayPickerView.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, daysOfWeek, dayPicker, commentBox;
+@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, daysOfWeek, dayPicker, commentBox, commentBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,7 +61,7 @@
     self.timePicker.hidden=YES;
     self.endTimePicker.hidden = YES;
     self.commentBox.hidden = YES;
-    
+    self.commentBar.hidden = YES;
 
 }
 
@@ -119,7 +119,7 @@
         }
         if(indexPath.row == 1){
             cell.timeLabel.text = @"End Time";
-            cell.daysLabel.text = endTime;
+            cell.daysLabel.text = self.endTime;
         }
         if(indexPath.row == 2){
             cell.timeLabel.text = @"Days";
@@ -136,24 +136,28 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     if([indexPath section] == 0){
         if([indexPath row] == 0){
             [dayPicker setHidden:YES];
             self.timePicker.hidden = NO;
             self.endTimePicker.hidden = YES;
             self.commentBox.hidden = YES;                       
+            self.commentBar.hidden = YES;
         }
         if([indexPath row] == 1){
             [dayPicker setHidden:YES];
             self.endTimePicker.hidden = NO;
             self.timePicker.hidden = YES;
             self.commentBox.hidden = YES;
+            self.commentBar.hidden = YES;
         }
         if([indexPath row] == 2){
             self.endTimePicker.hidden = YES;
             self.timePicker.hidden = YES;
             self.commentBox.hidden = YES;
             [dayPicker setHidden:NO];
+            self.commentBar.hidden = YES;
         }
     }
     if([indexPath section] == 1){
@@ -161,6 +165,8 @@
         self.endTimePicker.hidden = YES;
         [dayPicker setHidden:YES];
         self.commentBox.hidden = NO;
+        [commentBox becomeFirstResponder];
+        self.commentBar.hidden = NO;
     }
 	
 }
@@ -201,6 +207,12 @@
 
 - (IBAction)saveDay:(id)sender{
     NSLog(@"Save day");
+}
+- (IBAction)saveComment:(id)sender{
+    self.commentBar.hidden = YES;
+    self.commentBox.hidden = YES;
+    self.notes = self.commentBox.text;
+    [commentBox resignFirstResponder];
 }
 
 @end
