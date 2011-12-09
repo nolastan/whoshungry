@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     days = [[NSMutableArray alloc] initWithCapacity:7];
     [days addObject:@"Sunday"];
     [days addObject:@"Monday"];
