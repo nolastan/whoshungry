@@ -61,7 +61,11 @@
     self.timePicker.hidden=YES;
     self.endTimePicker.hidden = YES;
     self.commentBox.hidden = YES;
+<<<<<<< HEAD
     self.commentBar.hidden = YES;
+=======
+
+>>>>>>> 3fcfc37144e8dbd8a83a05685d60db0011f48e91
 }
 
 - (void)viewDidUnload
