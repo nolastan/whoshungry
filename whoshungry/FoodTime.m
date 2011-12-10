@@ -42,7 +42,7 @@
     if (self) {
         dow = d;
         start = [FoodTime minutesSinceMidnight:s];
-        end = [FoodTime minutesSinceMidnight:s];
+        end = [FoodTime minutesSinceMidnight:e];
         if ([n length] == 0) {
             comment = @"No Comments";
         } else {

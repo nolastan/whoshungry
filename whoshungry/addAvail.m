@@ -187,7 +187,8 @@
 //Save Button
 - (IBAction)save:(id)sender
 {
-    FoodTime * newTime = [[FoodTime alloc] initWithDates:startDate endTime:endDate day:0 note:self.notes];
+    
+    FoodTime * newTime = [[FoodTime alloc] initWithDates:startDate endTime:endDate day:[days indexOfObject:self.day] note:self.notes];
     [myUser addFoodTime:newTime];
     [myUser updateRemote];
     [self dismissModalViewControllerAnimated:YES];   
@@ -220,10 +221,8 @@
     NSLog(@"save end time");
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
-
-    self.endDate = [self.endTimePicker.date copy];
-
     self.endTime = [outputFormatter stringFromDate:self.endTimePicker.date];
+    self.endDate = [self.endTimePicker.date copy];
 
 
     [table reloadData];
