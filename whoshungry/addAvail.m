@@ -12,7 +12,7 @@
 #import "FoodTime.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, day, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
+@synthesize startTime, endTime, days, day, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar, startDate, endDate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -204,8 +204,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     [outputFormatter autorelease];
-    [outputFormatter stringFromDate:self.timePicker.date];
-    return [outputFormatter stringFromDate:self.timePicker.date]; 
+    return [outputFormatter stringFromDate:self.endTimePicker.date]; 
 }
 
 - (IBAction)saveStartTime:(id)sender{
@@ -213,7 +212,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     self.startTime = [outputFormatter stringFromDate:self.timePicker.date];
-    startDate = [self.timePicker.date copy];
+    self.startDate = [self.timePicker.date copy];
     [table reloadData];
     [outputFormatter release];
 }
@@ -222,7 +221,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
 
-    endDate = [self.endTimePicker.date copy];
+    self.endDate = [self.endTimePicker.date copy];
 
     self.endTime = [outputFormatter stringFromDate:self.endTimePicker.date];
 

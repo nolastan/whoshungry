@@ -39,6 +39,7 @@
 - (id) initWithUserObject:(User *)user;
 -(IBAction)saveComment:(id)sender;
 
+
 @property (nonatomic, retain) NSString *dayOfWeek;
 @property (nonatomic, retain) NSString *startTime;
 @property (nonatomic, retain) NSString *endTime;
@@ -50,5 +51,6 @@
 @property (nonatomic, retain) IBOutlet DayPickerView *dayPicker;
 @property (nonatomic, retain) IBOutlet UITextView *commentBox;
 @property (nonatomic, retain) IBOutlet UIToolbar *commentBar;
-
+@property (nonatomic, retain) NSDate* startDate;
+@property (nonatomic, retain) NSDate* endDate;
 @end

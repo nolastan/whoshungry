@@ -226,7 +226,7 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     NSMutableArray *food_times = [[NSMutableArray alloc] init ];
     for (NSArray *times in self.availability) {
         for (FoodTime *food_time in times) {
-            [food_times addObject:food_time];
+            [food_times addObject:[food_time asDict]];
         }
     }
     
