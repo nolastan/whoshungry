@@ -31,7 +31,7 @@
         if ([dict objectForKey:@"comment"] == [NSNull null]) {
             comment = @"No Comments";
         } else {
-            comment = [dict objectForKey:@"comment"];
+            comment = [[dict objectForKey:@"comment"] copy];
         }
     }
     return self;
