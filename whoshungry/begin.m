@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [textField becomeFirstResponder];
 }
 
 - (void)viewDidUnload
