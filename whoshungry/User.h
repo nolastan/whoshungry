@@ -30,6 +30,8 @@
 -(NSString*)createFriendship:(NSString*)number;
 -(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime;
 
+-(void) addFoodTime:(FoodTime *)newFoodtime;
+
 -(NSString*)params;
 + (NSArray *) findAllRemote;
 +(NSString*)checkUserExistence:(NSString*)number;

@@ -20,8 +20,11 @@
 -(BOOL) inRange:(int)check;
 
 - (id) initWithDict:(NSDictionary *)dict;
+- (id) initWithDates:(NSDate *)s endTime:(NSDate *)e day:(int)d note:(NSString *)n;
 -(NSString *) endTime;
 -(NSString *) startTime;
 
 -(NSDictionary *) asDict;
+
++ (int) minutesSinceMidnight:(NSDate *)date;
 @end

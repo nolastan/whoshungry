@@ -37,6 +37,30 @@
     return self;
 }
 
+- (id) initWithDates:(NSDate *)s endTime:(NSDate *)e day:(int)d note:(NSString *)n {
+    self = [super init];
+    if (self) {
+        dow = d;
+        start = [FoodTime minutesSinceMidnight:s];
+        end = [FoodTime minutesSinceMidnight:s];
+        if ([n length] == 0) {
+            comment = @"No Comments";
+        } else {
+            comment = n;
+        }
+    }
+}
+
++ (int) minutesSinceMidnight:(NSDate *)date
+{
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    unsigned unitFlags =  NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSDateComponents *components = [gregorian components:unitFlags fromDate:date];
+    
+    return 60 * [components hour] + [components minute];    
+}
+
 -(NSDictionary *) asDict {
     NSDictionary * result = [[NSDictionary alloc]initWithObjectsAndKeys:
                              [NSString stringWithFormat:@"%d",start], @"start", 

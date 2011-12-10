@@ -10,9 +10,10 @@
 #import "availCell.h"
 #import "toggleCell.h"
 #import "friendAvail.h"
+#import "DayPickerView.h"
 
 @implementation friendsAvail
-@synthesize names, times, filterText;
+@synthesize names, times, filterText, dayPicker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    dayPicker = (DayPickerView *) [[DayPickerView alloc] initBasic];
+    [dayPicker view].frame= CGRectMake(0, 200, 320, 250);
+    [[self view] addSubview:[dayPicker view]];
+    [dayPicker setHidden:YES];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -140,7 +147,6 @@ titleForHeaderInSection:(NSInteger)section
         }
         if([indexPath section] == 1)
         {
-            NSLog(@"AT ROW: %i", [indexPath row]);
             cell.timeLabel.text = [names objectAtIndex: [indexPath row]];
             cell.daysLabel.text = [times objectAtIndex: [indexPath row]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -160,12 +166,13 @@ titleForHeaderInSection:(NSInteger)section
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(saveFilter:)];
         self.navigationItem.rightBarButtonItem = doneButton; 
         [doneButton release];
+        [dayPicker setHidden:false];
     }
     if([indexPath section] == 1)
     {
         UIViewController *friendAvailController = [[friendAvail alloc] init ];
         [self.navigationController pushViewController:friendAvailController animated:YES];
-
+        [dayPicker setHidden:YES];
     }
 }
 - (void) editMode{
@@ -182,5 +189,6 @@ titleForHeaderInSection:(NSInteger)section
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(editMode)];
     self.navigationItem.rightBarButtonItem = groupButton;
     [groupButton release];
+    [dayPicker setHidden:true];
 }
 @end

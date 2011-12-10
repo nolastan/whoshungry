@@ -181,6 +181,14 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     [self updateRemote];
 }
 
+
+-(void) addFoodTime:(FoodTime *)newFoodtime {
+    [[availability objectAtIndex:newFoodtime.dow] addObject:newFoodtime];
+    NSLog(@"%@", newFoodtime);
+    [self updateRemote];
+}
+
+
 - (void) dealloc {
     [phoneNumber release];
     [availability release];

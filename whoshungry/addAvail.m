@@ -11,14 +11,13 @@
 #import "DayPickerView.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, daysOfWeek, dayPicker, commentBox, commentBar;
+@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.daysOfWeek = [NSArray arrayWithObjects:@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", nil];
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editMode)];
         [toolbar setItems:[NSArray arrayWithObject:saveButton] animated:YES];
@@ -61,6 +60,7 @@
     self.timePicker.hidden=YES;
     self.endTimePicker.hidden = YES;
     self.commentBox.hidden = YES;
+    self.commentBar.hidden = YES;
 }
 
 - (void)viewDidUnload
@@ -114,6 +114,8 @@
         if(indexPath.row == 0){
             cell.timeLabel.text = @"Start Time";
             cell.daysLabel.text = self.startTime;
+            [cell becomeFirstResponder];
+
         }
         if(indexPath.row == 1){
             cell.timeLabel.text = @"End Time";
@@ -169,10 +171,18 @@
 	
 }
 
+
+//Save Button
 - (IBAction)save:(id)sender
 {
-    [myUser addAvailability:[dayPicker getSelectedRow], startTime:[self getStartTime], endTime:[self getEndTime]];
+    FoodTime * newTime = [[FoodTime alloc] initWithDates:startDate endTime:endDate day:0 note:self.notes];
+    
+    [myUser addFoodTime:newTime];
+    NSLog(@"Save");
+    [self dismissModalViewControllerAnimated:YES];   
 }
+
+
 -(NSString*)getStartTime{
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
@@ -186,11 +196,13 @@
     [outputFormatter stringFromDate:self.timePicker.date];
     
 }
+
 - (IBAction)saveStartTime:(id)sender{
     NSLog(@"save start time");
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     self.startTime = [outputFormatter stringFromDate:self.timePicker.date];
+    startDate = self.timePicker.date;
     [table reloadData];
     [outputFormatter release];
 }
@@ -199,6 +211,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     self.endTime = [outputFormatter stringFromDate:self.timePicker.date];
+    endDate = self.timePicker.date;
     [table reloadData];
     [outputFormatter release]; 
 }
