@@ -79,8 +79,8 @@
 }
 //PickerViewController.m
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-    NSLog(@"Selected Color: %@. Index of selected color: %i", [days objectAtIndex:row], row);
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:row] forKey:@"pass"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDay" object:self userInfo:userInfo];
 }
 
 @end

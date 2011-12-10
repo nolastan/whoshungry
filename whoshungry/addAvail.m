@@ -22,7 +22,9 @@
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editMode)];
         [toolbar setItems:[NSArray arrayWithObject:saveButton] animated:YES];
         [saveButton release];
+    
     }
+
     return self;
 }
 
@@ -208,8 +210,10 @@
     [outputFormatter release]; 
 }
 
-- (IBAction)saveDay:(id)sender{
-    NSLog(@"Save day");
+
+- (IBAction)saveDay:(NSNotification *) notification{
+    if ([[notification name] isEqualToString:@"dayOfWeek"])
+        NSLog (@"Successfully received the test notification!");
 }
 - (IBAction)saveComment:(id)sender{
     self.commentBar.hidden = YES;

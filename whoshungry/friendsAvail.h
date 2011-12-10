@@ -18,11 +18,14 @@
     NSArray *times;
     NSString *filterText;
     BOOL *compatibleOnly;
+    NSMutableArray *days;
 }
 -(IBAction)toggleCompatible:(id)sender;
 -(IBAction)saveFilter:(id)sender;
+- (void) receiveDayOfWeek:(NSNotification *) notification;
 
 //@property (nonatomic, retain) NSString *compatibleOnly;
+@property (nonatomic, retain) NSArray *days;
 @property (nonatomic, retain) NSArray *times;
 @property (nonatomic, retain) NSArray *names;
 @property (nonatomic, retain) NSString *filterText;
