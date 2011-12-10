@@ -211,7 +211,6 @@ titleForHeaderInSection:(NSInteger)section
     if ([[notification name] isEqualToString:@"changeDay"]){
         int row = [[[notification userInfo] valueForKey:@"pass"] intValue];
         NSString *day = [self.days objectAtIndex:row];
-        NSLog(@"Day %i: %@", row, day);
         filterText = day;
         [table reloadData];
     }

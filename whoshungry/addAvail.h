@@ -21,7 +21,8 @@
     IBOutlet UIToolbar *commentBar;
     NSString *startTime;
     NSString *endTime;
-    NSString *days;
+    NSMutableArray *days;
+    NSString *day;
     NSString *notes;
     NSString *dayOfWeek;
     User *myUser;
@@ -41,8 +42,9 @@
 @property (nonatomic, retain) NSString *dayOfWeek;
 @property (nonatomic, retain) NSString *startTime;
 @property (nonatomic, retain) NSString *endTime;
-@property (nonatomic, retain) NSString *days;
+@property (nonatomic, retain) NSString *day;
 @property (nonatomic, retain) NSString *notes;
+@property (nonatomic, retain) NSArray *days;
 @property (nonatomic, retain) IBOutlet UIDatePicker *timePicker;
 @property (nonatomic, retain) IBOutlet UIDatePicker *endTimePicker;
 @property (nonatomic, retain) IBOutlet DayPickerView *dayPicker;
