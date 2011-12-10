@@ -11,6 +11,7 @@
 
 @interface myAvail : UIViewController <UITabBarDelegate, UITableViewDataSource>
 {
+    IBOutlet UITableView *table;
     NSArray *items;
     NSArray *days;
     User *myUser;

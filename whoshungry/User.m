@@ -9,6 +9,7 @@
 #import "User.h"
 #import "JSONKit.h"
 #import "Resource.h"
+#import "FoodTime.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
@@ -106,7 +107,6 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
 -(NSString*)getNameFromPhoneNumber:(NSString*)number{
     ABAddressBookRef addressBook = ABAddressBookCreate();
     NSArray *contacts = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    NSMutableDictionary *peopleDict = [[NSMutableDictionary alloc] init];
     
     if (contacts == nil) {
         NSLog(@"No contacts");
@@ -183,8 +183,10 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
 
 
 -(void) addFoodTime:(FoodTime *)newFoodtime {
-    [[availability objectAtIndex:newFoodtime.dow] addObject:newFoodtime];
     NSLog(@"%@", newFoodtime);
+    int index = [newFoodtime dow];
+    [[availability objectAtIndex:index] addObject:newFoodtime];
+    
     [self updateRemote];
 }
 
@@ -236,25 +238,22 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     return [params JSONString];
 }
 
--(NSString*)createFriendship:(NSString*)number {
-    [User checkUserExistence:number];
-    NSString *url = [NSString stringWithFormat:@"%@/friendships.json", siteURL];
+-(BOOL)createFriendship:(NSString*)number {
+    //[User checkUserExistence:number];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships/bynum.json", siteURL];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    [attributes setValue:@"9" forKey:@"user_id"];
-    [attributes setValue:@"12" forKey:@"friend_id"];
+    [attributes setValue:userId forKey:@"user_id"];
+    [attributes setValue:number forKey:@"friend_number"];
     
-    NSMutableDictionary *params = 
-    [NSMutableDictionary dictionaryWithObject:attributes forKey:@"friendship"];
+    NSString *result = [Resource post:[attributes JSONString] to:url];
     
-    [Resource post:[attributes JSONString] to:url];
+    if ([result isEqualToString:@"error"]) {
+        return NO;
+    }
+    return YES;
 }
 
-+(NSString*)checkUserExistence:(NSString*)number {
-    NSLog(@"checking user existence");
-    NSString *url = [NSString stringWithFormat:@"%@/users/bynum/%@.json",siteURL, number];
-    [Resource get:url];
-}
 
 - (void)createRemote {
     NSString *url =

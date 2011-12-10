@@ -131,7 +131,7 @@
     // Configure the cell.
     //cell.timeLabel.text = [self.items objectAtIndex: [indexPath row]];
     FoodTime *cellInfo = [[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
-
+    NSLog(@"%@", cellInfo);
     NSString *start = [cellInfo startTime];
     NSString *end = [cellInfo endTime];
 
@@ -154,5 +154,10 @@
 {
     [items release];
     [super dealloc];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [table reloadData];
 }
 @end

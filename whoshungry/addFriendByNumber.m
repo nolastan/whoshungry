@@ -33,10 +33,16 @@
 -(IBAction)push{
     NSString *number = [numberField text];
     
-    NSString *result = [currentUser createFriendship:number];
-    NSLog(number);
-    [currentUser updateFriends];
-    [self dismissModalViewControllerAnimated:YES];
+    if ([currentUser createFriendship:number]) {
+        [currentUser updateFriends];
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"That phone number doesn't correspond to a known user." delegate:nil cancelButtonTitle:@"Try again" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

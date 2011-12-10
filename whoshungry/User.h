@@ -27,14 +27,13 @@
 -(void)getAvailFromRemote;
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
--(NSString*)createFriendship:(NSString*)number;
+-(BOOL)createFriendship:(NSString*)number;
 -(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime;
 
 -(void) addFoodTime:(FoodTime *)newFoodtime;
 
 -(NSString*)params;
 + (NSArray *) findAllRemote;
-+(NSString*)checkUserExistence:(NSString*)number;
 
 - (void)createRemote;
 - (void)updateRemote;

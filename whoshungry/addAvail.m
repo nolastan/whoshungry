@@ -9,6 +9,7 @@
 #import "addAvail.h"
 #import "availCell.h"
 #import "DayPickerView.h"
+#import "FoodTime.h"
 
 @implementation addAvail
 @synthesize startTime, endTime, days, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
@@ -178,9 +179,8 @@
 - (IBAction)save:(id)sender
 {
     FoodTime * newTime = [[FoodTime alloc] initWithDates:startDate endTime:endDate day:0 note:self.notes];
-    
     [myUser addFoodTime:newTime];
-    NSLog(@"Save");
+    [myUser updateRemote];
     [self dismissModalViewControllerAnimated:YES];   
 }
 
@@ -196,7 +196,7 @@
     [outputFormatter setDateFormat:@"h:mm a"];
     [outputFormatter autorelease];
     [outputFormatter stringFromDate:self.timePicker.date];
-    
+    return [outputFormatter stringFromDate:self.timePicker.date]; 
 }
 
 - (IBAction)saveStartTime:(id)sender{
@@ -204,7 +204,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     self.startTime = [outputFormatter stringFromDate:self.timePicker.date];
-    startDate = self.timePicker.date;
+    startDate = [self.timePicker.date copy];
     [table reloadData];
     [outputFormatter release];
 }
@@ -213,7 +213,7 @@
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     self.endTime = [outputFormatter stringFromDate:self.timePicker.date];
-    endDate = self.timePicker.date;
+    endDate = [self.timePicker.date copy];
     [table reloadData];
     [outputFormatter release]; 
 }

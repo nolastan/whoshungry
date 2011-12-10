@@ -49,6 +49,7 @@
             comment = n;
         }
     }
+    return self;
 }
 
 + (int) minutesSinceMidnight:(NSDate *)date
