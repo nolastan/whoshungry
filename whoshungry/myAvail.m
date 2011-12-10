@@ -145,7 +145,7 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *editAvailController = [[editAvail alloc] initWithUserAndAvail:myUser time:[[[myUser availability] objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]]];
+    UIViewController *editAvailController = [[editAvail alloc] initWithUserObject:myUser];
     [self.navigationController pushViewController:editAvailController animated:YES];       
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }

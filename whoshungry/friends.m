@@ -9,6 +9,7 @@
 #import "friends.h"
 #import "User.h"
 #import "addFriendByNumber.h"
+#import "friendAvail.h"
 
 @implementation friends
 
@@ -48,7 +49,6 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Users";
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *addFriendButton = [[UIBarButtonItem alloc]
@@ -168,6 +168,10 @@
 
 #pragma mark - View lifecycle
 
+// Actions 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+// TODO push friend detail page
+}
 
 - (void)viewDidUnload
 {
