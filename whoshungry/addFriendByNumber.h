@@ -16,6 +16,6 @@
 }
 -(IBAction)push;
 - (id) initWithUserObject:(User *)user;
-
+-(IBAction)cancel:(id)sender;
 
 @end
