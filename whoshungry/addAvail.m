@@ -11,14 +11,13 @@
 #import "DayPickerView.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, daysOfWeek, dayPicker, commentBox, commentBar;
+@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.daysOfWeek = [NSArray arrayWithObjects:@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", nil];
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editMode)];
         [toolbar setItems:[NSArray arrayWithObject:saveButton] animated:YES];

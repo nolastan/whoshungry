@@ -23,7 +23,7 @@
     NSString *endTime;
     NSString *days;
     NSString *notes;
-    NSArray *dayOfWeek;
+    NSString *dayOfWeek;
     User *myUser;
 }
 -(NSString*)getStartTime;
@@ -36,7 +36,7 @@
 - (id) initWithUserObject:(User *)user;
 -(IBAction)saveComment:(id)sender;
 
-@property (nonatomic, retain) NSArray *daysOfWeek;
+@property (nonatomic, retain) NSString *dayOfWeek;
 @property (nonatomic, retain) NSString *startTime;
 @property (nonatomic, retain) NSString *endTime;
 @property (nonatomic, retain) NSString *days;
