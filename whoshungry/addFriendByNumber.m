@@ -73,5 +73,7 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
+-(IBAction)cancel:(id)sender{
+    [self dismissModalViewControllerAnimated:YES];   
+}
 @end
