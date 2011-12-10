@@ -13,7 +13,7 @@
 #import "DayPickerView.h"
 
 @implementation friendsAvail
-@synthesize names, times, filterText, dayPicker;
+@synthesize names, times, filterText, dayPicker, days;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +29,20 @@
         self.names = [NSArray arrayWithObjects:@"Paul Carleton", @"Brian Fink", @"Stan Rosenthal", nil];
         self.times = [NSArray arrayWithObjects:@"12-12:30", @"12:30-1", @"1-2, 4-6", nil];
         self.filterText = @"Monday";
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveDayOfWeek:) 
+                                                     name:@"changeDay"
+                                                   object:nil];
+        
+        days = [[NSMutableArray alloc] initWithCapacity:7];
+        [days addObject:@"Sunday"];
+        [days addObject:@"Monday"];
+        [days addObject:@"Tuesday"];
+        [days addObject:@"Wednesday"];
+        [days addObject:@"Thursday"];
+        [days addObject:@"Friday"];
+        [days addObject:@"Saturday"];
 
     }
     return self;
@@ -190,5 +204,16 @@ titleForHeaderInSection:(NSInteger)section
     self.navigationItem.rightBarButtonItem = groupButton;
     [groupButton release];
     [dayPicker setHidden:true];
+}
+
+- (void) receiveDayOfWeek:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"changeDay"]){
+        int row = [[[notification userInfo] valueForKey:@"pass"] intValue];
+        NSString *day = [self.days objectAtIndex:row];
+        NSLog(@"Day %i: %@", row, day);
+        filterText = day;
+        [table reloadData];
+    }
 }
 @end
