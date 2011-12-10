@@ -12,7 +12,7 @@
 #import "FoodTime.h"
 
 @implementation addAvail
-@synthesize startTime, endTime, days, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
+@synthesize startTime, endTime, days, day, notes, timePicker, endTimePicker, dayOfWeek, dayPicker, commentBox, commentBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,7 +23,19 @@
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editMode)];
         [toolbar setItems:[NSArray arrayWithObject:saveButton] animated:YES];
         [saveButton release];
-    
+        
+        days = [[NSMutableArray alloc] initWithCapacity:7];
+        [days addObject:@"Sunday"];
+        [days addObject:@"Monday"];
+        [days addObject:@"Tuesday"];
+        [days addObject:@"Wednesday"];
+        [days addObject:@"Thursday"];
+        [days addObject:@"Friday"];
+        [days addObject:@"Saturday"];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveDayOfWeek:) 
+                                                     name:@"changeDay"
+                                                   object:nil];   
     }
 
     return self;
@@ -60,10 +72,10 @@
     [[self view] addSubview:[dayPicker view]];
     [dayPicker setHidden:YES];
     // Do any additional setup after loading the view from its nib.
-    self.timePicker.hidden=YES;
     self.endTimePicker.hidden = YES;
     self.commentBox.hidden = YES;
     self.commentBar.hidden = YES;
+
 }
 
 - (void)viewDidUnload
@@ -118,7 +130,6 @@
             cell.timeLabel.text = @"Start Time";
             cell.daysLabel.text = self.startTime;
             [cell becomeFirstResponder];
-
         }
         if(indexPath.row == 1){
             cell.timeLabel.text = @"End Time";
@@ -126,12 +137,13 @@
         }
         if(indexPath.row == 2){
             cell.timeLabel.text = @"Days";
-            cell.daysLabel.text = days;
+            cell.daysLabel.text = day;
         }
     }
     if([indexPath section] == 1){
         cell.timeLabel.text = @"Notes";
         cell.daysLabel.text = notes;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
 	return cell; 
@@ -164,9 +176,6 @@
         }
     }
     if([indexPath section] == 1){
-        self.timePicker.hidden = YES;
-        self.endTimePicker.hidden = YES;
-        [dayPicker setHidden:YES];
         self.commentBox.hidden = NO;
         [commentBox becomeFirstResponder];
         self.commentBar.hidden = NO;
@@ -212,8 +221,12 @@
     NSLog(@"save end time");
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
-    self.endTime = [outputFormatter stringFromDate:self.timePicker.date];
-    endDate = [self.timePicker.date copy];
+
+    endDate = [self.endTimePicker.date copy];
+
+    self.endTime = [outputFormatter stringFromDate:self.endTimePicker.date];
+
+
     [table reloadData];
     [outputFormatter release]; 
 }
@@ -229,5 +242,12 @@
     self.notes = self.commentBox.text;
     [commentBox resignFirstResponder];
 }
-
+- (void) receiveDayOfWeek:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"changeDay"]){
+        int row = [[[notification userInfo] valueForKey:@"pass"] intValue];
+        self.day = [self.days objectAtIndex:row];
+        [table reloadData];
+    }
+}
 @end

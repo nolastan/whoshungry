@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 @interface friendAvail : UIViewController
 {
@@ -15,7 +16,10 @@
     NSString *comment;
     IBOutlet UILabel *timeLabel;
     IBOutlet UITextView *commentText;
+    IBOutlet UIButton *sendMessageButton;
 }
+
+- (IBAction)sendMessage:(id)sender;
 
 //@property (nonatomic, retain) NSString *compatibleOnly;
 @property (nonatomic, retain) NSString *time;

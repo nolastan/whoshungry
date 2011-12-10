@@ -57,4 +57,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)sendMessage:(id)sender{
+	MFMessageComposeViewController *controller = [[[MFMessageComposeViewController alloc] init] autorelease];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = @"Lunch?";
+		controller.recipients = [NSArray arrayWithObjects:@"12345678", @"87654321", nil];
+		controller.messageComposeDelegate = self;
+		[self presentModalViewController:controller animated:YES];
+	}    
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	switch (result) {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+			NSLog(@"Error sending iMessage");
+			break;
+		case MessageComposeResultSent:
+ 			NSLog(@"iMessage sent");           
+			break;
+		default:
+			break;
+	}
+    
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 @end
