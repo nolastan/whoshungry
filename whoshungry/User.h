@@ -28,7 +28,6 @@
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
 -(BOOL)createFriendship:(NSString*)number;
--(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime;
 
 -(void) addFoodTime:(FoodTime *)newFoodtime;
 
@@ -36,7 +35,7 @@
 + (NSArray *) findAllRemote;
 
 - (void)createRemote;
-- (void)updateRemote;
+- (BOOL)updateRemote;
 - (void)saveRemote;
 - (void)destroyRemote;
 -(void) updateFriends;

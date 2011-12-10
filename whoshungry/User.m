@@ -173,21 +173,15 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     }
 }
 
--(void) addAvailability:(int)dayNumber startTime:(NSString*)startTime endTime:(NSString*)endTime{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:startTime forKey:@"start"];
-    [dict setObject:endTime forKey:@"end"];
-    [[availability objectAtIndex:dayNumber] addObject:dict];
-    [self updateRemote];
-}
 
 
 -(void) addFoodTime:(FoodTime *)newFoodtime {
-    NSLog(@"%@", newFoodtime);
     int index = [newFoodtime dow];
     [[availability objectAtIndex:index] addObject:newFoodtime];
     
-    [self updateRemote];
+    if (![self updateRemote]) {
+        [[availability objectAtIndex:index] removeObject:newFoodtime];
+    }
 }
 
 
@@ -261,10 +255,16 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     [Resource post:[self params] to:url];
 }
 
-- (void)updateRemote {
+- (BOOL)updateRemote {
     NSString *url =
     [NSString stringWithFormat:@"%@/users/%@.json", siteURL, self.userId];
-    [Resource put:[self params] to:url];
+    NSString *result = [Resource put:[self params] to:url];
+    
+    if ([result rangeOfString:@"taken"].location == NSNotFound) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)saveRemote {
