@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface friends : UITableViewController  {
+@interface friends : UIViewController  {
     NSMutableArray *users;
     User *currentUser;
+    IBOutlet UITableView *table;
 }
 
 @property (nonatomic, retain) NSArray * users;

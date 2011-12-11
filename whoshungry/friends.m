@@ -9,7 +9,7 @@
 #import "friends.h"
 #import "User.h"
 #import "addFriendByNumber.h"
-#import "friendAvail.h"
+#import "friendDetail.h"
 
 @implementation friends
 
@@ -38,7 +38,7 @@
 -(IBAction)refresh {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     self.users = [currentUser friends];
-    [self.tableView reloadData];
+    [table reloadData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
 }
@@ -71,7 +71,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [table reloadData];
 
 }
 
@@ -170,7 +170,8 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-// TODO push friend detail page
+    UIViewController *friendDetailController = [[friendDetail alloc] initWithUserObject:currentUser friend:[users objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:friendDetailController animated:YES];   
 }
 
 - (void)viewDidUnload
