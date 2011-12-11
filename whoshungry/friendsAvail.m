@@ -48,7 +48,7 @@
         // Go through all the friends and add them to the table
         for(User* friend in [myUser friends]) {
             NSLog(@"PHONE NUMBER:%@",[friend phoneNumber]);
-            [names addObject:[friend phoneNumber]]; // Add the friend's name (or phone number)
+            [names addObject:[friend name]]; // Add the friend's name (or phone number)
             [times addObject:[friend availability]]; // Copy the friend's availabilities (memory mangagement? XD)
         }
         

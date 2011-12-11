@@ -148,6 +148,13 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
             if([filteredNumber isEqualToString:number]) {
                 NSString *first = firstName;
                 NSString *last = lastName;
+                
+                if(first == NULL) {
+                    first = @"";
+                }
+                if(last == NULL) {
+                    last = @"";
+                }
                 return [NSString stringWithFormat:@"%@ %@", first, last];
             }            
         }
