@@ -23,6 +23,7 @@
 - (id) initWithDates:(NSDate *)s endTime:(NSDate *)e day:(int)d note:(NSString *)n;
 -(NSString *) endTime;
 -(NSString *) startTime;
+-(NSString *) timeRange;
 
 -(NSDictionary *) asDict;
 

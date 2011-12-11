@@ -8,22 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "DayPickerView.h"
+#import "User.h"
 
 @interface friendsAvail : UIViewController
 {
     IBOutlet DayPickerView *dayPicker;
     IBOutlet UITableView *table;
     IBOutlet UIPickerView *filterPicker;
-    NSArray *names;
-    NSArray *times;
+    NSMutableArray *names;
+    NSMutableArray *times;
     NSString *filterText;
     BOOL *compatibleOnly;
     NSMutableArray *days;
+    User* myUser;
 }
 -(IBAction)toggleCompatible:(id)sender;
 -(IBAction)saveFilter:(id)sender;
 - (void) receiveDayOfWeek:(NSNotification *) notification;
-
+-(id)initWithUserObject:(User*)user;
 //@property (nonatomic, retain) NSString *compatibleOnly;
 @property (nonatomic, retain) NSArray *days;
 @property (nonatomic, retain) NSArray *times;

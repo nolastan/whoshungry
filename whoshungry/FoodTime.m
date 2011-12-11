@@ -93,6 +93,9 @@
     return [self intToTime:end];
 }
 
+-(NSString *) timeRange{
+    return [NSString stringWithFormat:@"%@-%@",[self startTime],[self endTime]];
+}
 
 -(BOOL) inRange:(int)check {
     return (check >= start) && (check <= end);

@@ -19,22 +19,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Friends' Availability";
-        UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
-                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(editMode)];
-        self.navigationItem.rightBarButtonItem = groupButton;
-        [groupButton release];
         
-//    TODO: LOAD ITEMS FROM SERVER
-        self.names = [NSArray arrayWithObjects:@"Paul Carleton", @"Brian Fink", @"Stan Rosenthal", nil];
-        self.times = [NSArray arrayWithObjects:@"12-12:30", @"12:30-1", @"1-2, 4-6", nil];
-        self.filterText = @"Monday";
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveDayOfWeek:) 
-                                                     name:@"changeDay"
-                                                   object:nil];
-        
+    }
+    return self;
+}
+-(id)initWithUserObject:(User *)user{
+    self = [super init];
+    if (self) {
         days = [[NSMutableArray alloc] initWithCapacity:7];
         [days addObject:@"Sunday"];
         [days addObject:@"Monday"];
@@ -43,11 +34,37 @@
         [days addObject:@"Thursday"];
         [days addObject:@"Friday"];
         [days addObject:@"Saturday"];
-
+        
+        myUser = user;
+        self.title = @"Friends' Availability";
+        UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(editMode)];
+        self.navigationItem.rightBarButtonItem = groupButton;
+        [groupButton release];
+        
+        self.names = [[NSMutableArray alloc] init];
+        self.times = [[NSMutableArray alloc] init];
+        
+        // Go through all the friends and add them to the table
+        for(User* friend in [myUser friends]) {
+            NSLog(@"PHONE NUMBER:%@",[friend phoneNumber]);
+            [names addObject:[friend phoneNumber]]; // Add the friend's name (or phone number)
+            [times addObject:[friend availability]]; // Copy the friend's availabilities (memory mangagement? XD)
+        }
+        
+        self.filterText = @"Monday";
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveDayOfWeek:) 
+                                                     name:@"changeDay"
+                                                   object:nil];
+        
+        
     }
+    
     return self;
-}
 
+}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -91,7 +108,7 @@
     }
     if(section == 1)
     {
-        return 3;
+        return [names count];
     }
     if(section == 2)
     {
@@ -161,8 +178,14 @@ titleForHeaderInSection:(NSInteger)section
         }
         if([indexPath section] == 1)
         {
+            int thisDay = [days indexOfObject:filterText];
+            NSMutableArray *timeArr = [[times objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
+            cell.daysLabel.text = @"";
+            for(FoodTime *foodTime in timeArr) {
+                cell.daysLabel.text = [NSString stringWithFormat:@"%@ %@",cell.daysLabel.text, [foodTime timeRange]];
+            }
             cell.timeLabel.text = [names objectAtIndex: [indexPath row]];
-            cell.daysLabel.text = [times objectAtIndex: [indexPath row]];
+            //cell.daysLabel.text = [times objectAtIndex: [indexPath row]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         return cell;
