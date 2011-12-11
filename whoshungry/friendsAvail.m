@@ -36,7 +36,7 @@
         [days addObject:@"Saturday"];
         
         myUser = user;
-        self.title = @"Friends' Availability";
+        self.title = @"Availabilities";
         UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(editMode)];
         self.navigationItem.rightBarButtonItem = groupButton;
@@ -151,7 +151,7 @@ titleForHeaderInSection:(NSInteger)section
             cell.toggleLabel.text = @"Show only compatible times";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [cell.toggle addTarget:self action:@selector(toggleCompatible:) forControlEvents:UIControlEventValueChanged];
-
+            compatibleOnly = YES;
         }        
         return cell;
     }else{
@@ -207,18 +207,20 @@ titleForHeaderInSection:(NSInteger)section
     }
     if([indexPath section] == 1)
     {
-        UIViewController *friendAvailController = [[friendAvail alloc] init ];
+        User* selectedUser = [[myUser friends] objectAtIndex:[indexPath row]];
+        int selectedDay = [days indexOfObject:filterText];
+        UIViewController *friendAvailController = [[friendAvail alloc] initWithUsers:myUser otherUser:selectedUser compatibleOnly:compatibleOnly day:selectedDay ];
         [self.navigationController pushViewController:friendAvailController animated:YES];
         [dayPicker setHidden:YES];
     }
 }
 - (void) editMode{
     NSLog(@"entering edit mode");
-//    [table cellForRowAtIndexPath:0].accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
 - (IBAction)toggleCompatible:(id)sender{
     NSLog(@"Toggle compatibility");
+    compatibleOnly = !compatibleOnly;
 }
 -(IBAction)saveFilter:(id)sender{
     NSLog(@"Save Filter");

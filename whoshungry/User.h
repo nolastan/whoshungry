@@ -28,6 +28,7 @@
 - (id) initWithPhoneNumber:(NSString *)dict;
 -(NSString*)getNameFromPhoneNumber:(NSString*)number;
 -(BOOL)createFriendship:(NSString*)number;
+-(NSMutableArray*) getAvailabilitiesForDay:(int)day;
 
 -(void) addFoodTime:(FoodTime *)newFoodtime;
 

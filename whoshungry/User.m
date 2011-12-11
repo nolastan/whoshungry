@@ -180,7 +180,9 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     }
 }
 
-
+-(NSMutableArray*) getAvailabilitiesForDay:(int)day{
+    return [availability objectAtIndex:day];
+}
 
 -(void) addFoodTime:(FoodTime *)newFoodtime {
     int index = [newFoodtime dow];

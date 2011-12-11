@@ -187,7 +187,7 @@
 //Save Button
 - (IBAction)save:(id)sender
 {
-    
+    NSLog(@"Adding availability");
     FoodTime * newTime = [[FoodTime alloc] initWithDates:startDate endTime:endDate day:[days indexOfObject:self.day] note:self.notes];
     [myUser addFoodTime:newTime];
     [myUser updateRemote];

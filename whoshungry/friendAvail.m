@@ -15,11 +15,32 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-//        Why is this not working!?!?!
-            }
+    
+    }
     return self;
 }
+
+-(id)initWithUsers:(User*)owner otherUser:(User*)otherUser compatibleOnly:(bool)compatOnly day:(int)chosenDay{
+    self = [self init];
+    if(self) {
+        days = [[NSMutableArray alloc] initWithCapacity:7];
+        [days addObject:@"Sunday"];
+        [days addObject:@"Monday"];
+        [days addObject:@"Tuesday"];
+        [days addObject:@"Wednesday"];
+        [days addObject:@"Thursday"];
+        [days addObject:@"Friday"];
+        [days addObject:@"Saturday"];
+
+        
+        day = chosenDay;
+        compatibleOnly = compatOnly;
+        myUser = owner;
+        friendUser = otherUser;
+    }
+    return self;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,12 +55,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.comment = @"This is the comment";
-    self.time = @"12-2 Today";
+    NSMutableArray *myUserAvails = [myUser getAvailabilitiesForDay:day];
+    NSMutableArray *friendAvails = [friendUser getAvailabilitiesForDay:day];
+    self.time = @"";
+    self.comment = @"";
+    
+    if(compatibleOnly) {
+        NSMutableArray *compats = [[NSMutableArray alloc] init];
+        bool found = false;
+        for(FoodTime *friendTime in friendAvails) {
+            for(FoodTime *userTime in myUserAvails) {
+                if([userTime isCompatible:friendTime]) {
+                    [compats addObject:friendTime];
+                    break;
+                }
+            }
+        }
+        for(FoodTime *avail in compats) {
+            NSLog(@"avail");
+            self.time = [NSString stringWithFormat:@"%@ %@,",self.time,[avail timeRange]];
+            self.comment = [NSString stringWithFormat:@"%@ %@: %@\n\n",self.comment,[avail timeRange],[avail comment]];
+        }
+    } else {
+        for(FoodTime *avail in friendAvails) {
+            NSLog(@"avail");
+            self.time = [NSString stringWithFormat:@"%@ %@,",self.time,[avail timeRange]];
+            self.comment = [NSString stringWithFormat:@"%@ %@: %@\n\n",self.comment,[avail timeRange],[avail comment]];
+        }
+    }
+    
     self.name = @"Stan Rosenthal";
-    commentText.text = @"F!";
+    commentText.text = self.comment;
     timeLabel.text = [NSString stringWithFormat:@"Available %@", self.time];
-    self.title = name;
+    self.title = [days objectAtIndex:day];
 
     // Do any additional setup after loading the view from its nib.
 }

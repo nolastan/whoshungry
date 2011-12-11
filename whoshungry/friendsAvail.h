@@ -18,7 +18,7 @@
     NSMutableArray *names;
     NSMutableArray *times;
     NSString *filterText;
-    BOOL *compatibleOnly;
+    bool compatibleOnly;
     NSMutableArray *days;
     User* myUser;
 }
