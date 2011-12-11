@@ -241,12 +241,12 @@ static NSString *siteURL = @"http://whoshungry.heroku.com";
     return [params JSONString];
 }
 
--(void)removeFriend:(User *)friend {
-    [friends removeObject:friend];
-    NSString *url = [NSString stringWithFormat:@"%@/friendships/1.json", siteURL];
+-(void)removeFriend:(User *)frend {
+    [friends removeObject:frend];
+    NSString *url = [NSString stringWithFormat:@"%@/friendships/unfriend.json", siteURL];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    [dict setValue:friend.userId forKey:@"friend_id"];
+    [dict setValue:frend.userId forKey:@"friend_id"];
     [dict setValue:self.userId forKey:@"user_id"];
     
     [Resource post:[dict JSONString] to:url];

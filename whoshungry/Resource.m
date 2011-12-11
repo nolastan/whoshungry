@@ -32,8 +32,8 @@
     return [self sendBy:@"PUT" to:url withBody:body];
 }
 
-+ (NSString *)delete:(NSString *)url {
-    return [self sendBy:@"DELETE" to:url withBody:nil];
++ (NSString *)del:(NSString *)body to:(NSString *)url {
+    return [self sendBy:@"DELETE" to:url withBody:body];
 }
 
 + (NSString *)sendBy:(NSString *)method to:(NSString *)url withBody:(NSString *)body {

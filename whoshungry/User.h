@@ -34,7 +34,7 @@
 
 -(NSString*)params;
 + (NSArray *) findAllRemote;
-
+-(void)removeFriend:(User *)frend;
 - (void)createRemote;
 - (BOOL)updateRemote;
 - (void)saveRemote;

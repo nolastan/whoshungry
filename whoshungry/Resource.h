@@ -13,7 +13,7 @@
 + (NSString *)get:(NSString *)url;
 + (NSString *)post:(NSString *)body to:(NSString *)url;
 + (NSString *)put:(NSString *)body to:(NSString *)url;
-+ (NSString *)delete:(NSString *)url;
++ (NSString *)del:(NSString *)body to:(NSString *)url;
 
 + (NSString *)sendBy:(NSString *)method to:(NSString *)url withBody:(NSString *)body;
 

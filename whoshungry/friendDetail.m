@@ -131,8 +131,7 @@
 
 - (IBAction)unfriend:(id)sender
 {
-    [[currentUser friends] removeObject:friend];
-    [currentUser updateRemote];
+    [currentUser removeFriend:friend];
     [self.navigationController popViewControllerAnimated:YES];       
     
 }
