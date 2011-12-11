@@ -13,7 +13,7 @@
 #import "DayPickerView.h"
 
 @implementation friendsAvail
-@synthesize names, times, filterText, dayPicker, days;
+@synthesize allNames, allTimes, compatNames, compatTimes, filterText, dayPicker, days;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,15 +42,45 @@
         self.navigationItem.rightBarButtonItem = groupButton;
         [groupButton release];
         
-        self.names = [[NSMutableArray alloc] init];
-        self.times = [[NSMutableArray alloc] init];
+        self.allNames = [[NSMutableArray alloc] init];
+        self.allTimes = [[NSMutableArray alloc] init];
+        self.compatNames = [[NSMutableArray alloc] init];
+        self.compatTimes = [[NSMutableArray alloc] init];
         
         // Go through all the friends and add them to the table
         for(User* friend in [myUser friends]) {
             NSLog(@"PHONE NUMBER:%@",[friend phoneNumber]);
-            [names addObject:[friend name]]; // Add the friend's name (or phone number)
-            [times addObject:[friend availability]]; // Copy the friend's availabilities (memory mangagement? XD)
+            [allNames addObject:[friend name]]; // Add the friend's name (or phone number)
+            [allTimes addObject:[friend availability]]; // Copy the friend's availabilities (memory mangagement? XD)
+            
+            bool found = false;
+            for(int i=0;i<7;i++) {
+                NSMutableArray *myUserAvail = [[myUser availability] objectAtIndex:i];
+                NSMutableArray *friendAvail = [[friend availability] objectAtIndex:i];
+                
+                for(FoodTime* friendTime in friendAvail) {
+                    for(FoodTime* myUserTime in myUserAvail) {
+                        if([friendTime isCompatible:myUserTime]) {
+                            NSLog(@"compat");
+                            if(!found) {
+                                [compatNames addObject:[friend name]];
+                                NSMutableArray *theDays = [[NSMutableArray alloc] initWithCapacity:7];
+                                for (int i = 0; i < 7; ++i) {
+                                    [theDays insertObject:[[NSMutableArray alloc]init] atIndex:i];
+                                }
+                                [compatTimes addObject:theDays];
+                            }
+                            [[[compatTimes objectAtIndex:[compatNames indexOfObject:[friend name]]] objectAtIndex:[friendTime dow]] addObject:friendTime];
+                            found = true;
+                            
+                        }
+                    }
+                }
+                
+            }
+            
         }
+        
         
         self.filterText = @"Monday";
         
@@ -108,7 +138,11 @@
     }
     if(section == 1)
     {
-        return [names count];
+        if(compatibleOnly) {
+            return [compatNames count];
+        } else {
+            return [allNames count];
+        }
     }
     if(section == 2)
     {
@@ -179,12 +213,23 @@ titleForHeaderInSection:(NSInteger)section
         if([indexPath section] == 1)
         {
             int thisDay = [days indexOfObject:filterText];
-            NSMutableArray *timeArr = [[times objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
+            NSMutableArray *timeArr = [[NSMutableArray alloc] init];
+            if(compatibleOnly) {
+                timeArr = [[allTimes objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
+            } else {
+                timeArr = [[allTimes objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
+            }
+            
             cell.daysLabel.text = @"";
             for(FoodTime *foodTime in timeArr) {
                 cell.daysLabel.text = [NSString stringWithFormat:@"%@ %@",cell.daysLabel.text, [foodTime timeRange]];
             }
-            cell.timeLabel.text = [names objectAtIndex: [indexPath row]];
+            if(compatibleOnly) {
+                cell.timeLabel.text = [allNames objectAtIndex: [indexPath row]];
+            } else {
+                cell.timeLabel.text = [allNames objectAtIndex: [indexPath row]];
+            }
+            
             //cell.daysLabel.text = [times objectAtIndex: [indexPath row]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -221,6 +266,7 @@ titleForHeaderInSection:(NSInteger)section
 - (IBAction)toggleCompatible:(id)sender{
     NSLog(@"Toggle compatibility");
     compatibleOnly = !compatibleOnly;
+    [table reloadData];
 }
 -(IBAction)saveFilter:(id)sender{
     NSLog(@"Save Filter");

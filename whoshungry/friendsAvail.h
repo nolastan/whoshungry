@@ -15,8 +15,10 @@
     IBOutlet DayPickerView *dayPicker;
     IBOutlet UITableView *table;
     IBOutlet UIPickerView *filterPicker;
-    NSMutableArray *names;
-    NSMutableArray *times;
+    NSMutableArray *compatNames;
+    NSMutableArray *compatTimes;
+    NSMutableArray *allNames;
+    NSMutableArray *allTimes;
     NSString *filterText;
     bool compatibleOnly;
     NSMutableArray *days;
@@ -28,8 +30,10 @@
 -(id)initWithUserObject:(User*)user;
 //@property (nonatomic, retain) NSString *compatibleOnly;
 @property (nonatomic, retain) NSArray *days;
-@property (nonatomic, retain) NSArray *times;
-@property (nonatomic, retain) NSArray *names;
+@property (nonatomic, retain) NSArray *allTimes;
+@property (nonatomic, retain) NSArray *allNames;
+@property (nonatomic, retain) NSArray *compatTimes;
+@property (nonatomic, retain) NSArray *compatNames;
 @property (nonatomic, retain) NSString *filterText;
 @property (nonatomic, retain) IBOutlet DayPickerView *dayPicker;
 
