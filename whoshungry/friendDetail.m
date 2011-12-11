@@ -124,9 +124,9 @@
 
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *friendAvailController = [[friendAvail alloc] init];
-    [self.navigationController pushViewController:friendAvailController animated:YES];       
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    int selectedDay = [indexPath section];
+    UIViewController *friendAvailController = [[friendAvail alloc] initWithUsers:currentUser otherUser:friend compatibleOnly:false day:selectedDay ];
+    [self.navigationController pushViewController:friendAvailController animated:YES];
 }
 
 - (IBAction)unfriend:(id)sender

@@ -171,7 +171,8 @@
 // Actions 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *friendDetailController = [[friendDetail alloc] initWithUserObject:currentUser friend:[users objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:friendDetailController animated:YES];   
+    [self.navigationController pushViewController:friendDetailController animated:YES];  
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)viewDidUnload

@@ -34,7 +34,7 @@
         [days addObject:@"Thursday"];
         [days addObject:@"Friday"];
         [days addObject:@"Saturday"];
-        
+        compatibleOnly = NO;
         myUser = user;
         self.title = @"Availabilities";
         UIBarButtonItem *groupButton = [[UIBarButtonItem alloc]
@@ -55,13 +55,13 @@
             
             bool found = false;
             for(int i=0;i<7;i++) {
-                NSMutableArray *myUserAvail = [[myUser availability] objectAtIndex:i];
-                NSMutableArray *friendAvail = [[friend availability] objectAtIndex:i];
+                NSMutableArray *myUserAvail = [myUser getAvailabilitiesForDay:i];
+                NSMutableArray *friendAvail = [friend getAvailabilitiesForDay:i];
                 
                 for(FoodTime* friendTime in friendAvail) {
                     for(FoodTime* myUserTime in myUserAvail) {
-                        if([friendTime isCompatible:myUserTime]) {
-                            NSLog(@"compat");
+                        if([myUserTime isCompatible:friendTime]) {
+                            NSLog(@"TIME FOR %@ IS COMPAT", [friend phoneNumber]);
                             if(!found) {
                                 [compatNames addObject:[friend name]];
                                 NSMutableArray *theDays = [[NSMutableArray alloc] initWithCapacity:7];
@@ -72,6 +72,7 @@
                             }
                             [[[compatTimes objectAtIndex:[compatNames indexOfObject:[friend name]]] objectAtIndex:[friendTime dow]] addObject:friendTime];
                             found = true;
+                            break;
                             
                         }
                     }
@@ -139,8 +140,10 @@
     if(section == 1)
     {
         if(compatibleOnly) {
+            NSLog(@"COMPAT:%d",[compatNames count]);
             return [compatNames count];
         } else {
+            NSLog(@"ALL:%d",[allNames count]);
             return [allNames count];
         }
     }
@@ -168,7 +171,7 @@ titleForHeaderInSection:(NSInteger)section
     static NSString *CellIdentifier = @"availCell";
 
     if([indexPath section] == 2){
-        toggleCell *cell = (toggleCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        toggleCell *cell = nil;//(toggleCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             NSArray *topLevelObjects = [[NSBundle mainBundle]
                                         loadNibNamed:@"toggleCell" owner:nil options:nil];
@@ -185,7 +188,8 @@ titleForHeaderInSection:(NSInteger)section
             cell.toggleLabel.text = @"Show only compatible times";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [cell.toggle addTarget:self action:@selector(toggleCompatible:) forControlEvents:UIControlEventValueChanged];
-            compatibleOnly = YES;
+            [[cell toggle] setOn:compatibleOnly];
+            //compatibleOnly = YES;
         }        
         return cell;
     }else{
@@ -215,23 +219,22 @@ titleForHeaderInSection:(NSInteger)section
             int thisDay = [days indexOfObject:filterText];
             NSMutableArray *timeArr = [[NSMutableArray alloc] init];
             if(compatibleOnly) {
-                timeArr = [[allTimes objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
+                timeArr = [[compatTimes objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
             } else {
                 timeArr = [[allTimes objectAtIndex:[indexPath row]] objectAtIndex:thisDay];
             }
-            
             cell.daysLabel.text = @"";
             for(FoodTime *foodTime in timeArr) {
                 cell.daysLabel.text = [NSString stringWithFormat:@"%@ %@",cell.daysLabel.text, [foodTime timeRange]];
             }
             if(compatibleOnly) {
-                cell.timeLabel.text = [allNames objectAtIndex: [indexPath row]];
+                cell.timeLabel.text = [compatNames objectAtIndex: [indexPath row]];
             } else {
                 cell.timeLabel.text = [allNames objectAtIndex: [indexPath row]];
             }
-            
-            //cell.daysLabel.text = [times objectAtIndex: [indexPath row]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+
         }
         return cell;
     }
@@ -252,7 +255,28 @@ titleForHeaderInSection:(NSInteger)section
     }
     if([indexPath section] == 1)
     {
-        User* selectedUser = [[myUser friends] objectAtIndex:[indexPath row]];
+        User* selectedUser;
+        NSString *friendName;
+        if(compatibleOnly) {
+            friendName = [compatNames objectAtIndex:[indexPath row]];
+            
+        } else {
+            friendName = [allNames objectAtIndex:[indexPath row]];
+        }
+        
+        for(User *friend in [myUser friends]) {
+            if([friend name] == @"") {
+                if([friend phoneNumber] == friendName) {
+                    selectedUser = friend;
+                    break;
+                }
+            } else {
+                if([friend name] == friendName) {
+                    selectedUser = friend;
+                    break;
+                }
+            }
+        }
         int selectedDay = [days indexOfObject:filterText];
         UIViewController *friendAvailController = [[friendAvail alloc] initWithUsers:myUser otherUser:selectedUser compatibleOnly:compatibleOnly day:selectedDay ];
         [self.navigationController pushViewController:friendAvailController animated:YES];
