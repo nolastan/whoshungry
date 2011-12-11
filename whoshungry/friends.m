@@ -71,13 +71,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [table reloadData];
+    
 
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self refresh];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
