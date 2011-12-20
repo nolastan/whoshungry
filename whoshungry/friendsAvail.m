@@ -57,25 +57,29 @@
             for(int i=0;i<7;i++) {
                 NSMutableArray *myUserAvail = [myUser getAvailabilitiesForDay:i];
                 NSMutableArray *friendAvail = [friend getAvailabilitiesForDay:i];
-                
+                [compatNames addObject:[[NSMutableArray alloc] init]];
                 for(FoodTime* friendTime in friendAvail) {
                     for(FoodTime* myUserTime in myUserAvail) {
                         if([myUserTime isCompatible:friendTime]) {
-                            NSLog(@"TIME FOR %@ IS COMPAT", [friend phoneNumber]);
+                            NSLog(@"TIME FOR %@ ON %d IS COMPAT", [friend phoneNumber], i);
                             if(!found) {
-                                [compatNames addObject:[friend name]];
+                                [[compatNames objectAtIndex:i] addObject:[friend name]];
+                                NSLog(@"i:%d index:%d ",i,[[compatNames objectAtIndex:i] indexOfObject:[friend name]]);
+
                                 NSMutableArray *theDays = [[NSMutableArray alloc] initWithCapacity:7];
                                 for (int i = 0; i < 7; ++i) {
                                     [theDays insertObject:[[NSMutableArray alloc]init] atIndex:i];
                                 }
                                 [compatTimes addObject:theDays];
                             }
-                            [[[compatTimes objectAtIndex:[compatNames indexOfObject:[friend name]]] objectAtIndex:[friendTime dow]] addObject:friendTime];
+                            NSLog(@"i:%d friendTime:%d %d %d",i,[friendTime dow],[[compatNames objectAtIndex:i] indexOfObject:[friend name]]);
+                            [[[compatTimes objectAtIndex:[[compatNames objectAtIndex:i] indexOfObject:[friend name]]] objectAtIndex:[friendTime dow]] addObject:friendTime];
                             found = true;
                             break;
                             
                         }
                     }
+                    found = false;
                 }
                 
             }
@@ -140,8 +144,9 @@
     if(section == 1)
     {
         if(compatibleOnly) {
+            int thisDay = [days indexOfObject:filterText];
             NSLog(@"COMPAT:%d",[compatNames count]);
-            return [compatNames count];
+            return [[compatNames objectAtIndex:thisDay] count];
         } else {
             NSLog(@"ALL:%d",[allNames count]);
             return [allNames count];
@@ -228,7 +233,7 @@ titleForHeaderInSection:(NSInteger)section
                 cell.daysLabel.text = [NSString stringWithFormat:@"%@ %@",cell.daysLabel.text, [foodTime timeRange]];
             }
             if(compatibleOnly) {
-                cell.timeLabel.text = [compatNames objectAtIndex: [indexPath row]];
+                cell.timeLabel.text = [[compatNames objectAtIndex:thisDay] objectAtIndex: [indexPath row]];
             } else {
                 cell.timeLabel.text = [allNames objectAtIndex: [indexPath row]];
             }
